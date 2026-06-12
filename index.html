@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Arcis — Analyse · Assemble · Aviate</title>
+  <meta name="description" content="Team Arcis is a student engineering team competing in SAE Aero Design and AIAA Design/Build/Fly.">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/images/logo-white.png" alt="Team Arcis" class="nav-logo-img"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+      <span class="nav-logo-fallback" style="display:none">ARCIS</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html"        class="nav-link">Home</a>
+      <a href="about.html"        class="nav-link">About</a>
+      <a href="team.html"         class="nav-link">Team</a>
+      <a href="history.html"      class="nav-link">History</a>
+      <a href="competitions.html" class="nav-link">Competitions</a>
+      <a href="sponsors.html"     class="nav-link">Sponsors</a>
+      <a href="gallery.html"      class="nav-link">Gallery</a>
+      <a href="contact.html"      class="nav-link">Contact</a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Mobile overlay ──────────────────────────────────── -->
+<div class="nav-overlay" id="navOverlay">
+  <a href="index.html"        class="nav-overlay-link">Home</a>
+  <a href="about.html"        class="nav-overlay-link">About</a>
+  <a href="team.html"         class="nav-overlay-link">Team</a>
+  <a href="history.html"      class="nav-overlay-link">History</a>
+  <a href="competitions.html" class="nav-overlay-link">Competitions</a>
+  <a href="sponsors.html"     class="nav-overlay-link">Sponsors</a>
+  <a href="gallery.html"      class="nav-overlay-link">Gallery</a>
+  <a href="contact.html"      class="nav-overlay-link">Contact</a>
+  <div class="nav-overlay-meta">
+    <p>SAE Aero Design · AIAA Design/Build/Fly</p>
+  </div>
+</div>
+
+<main>
+
+  <!-- ── Hero ──────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-inner">
+      <img
+        src="assets/images/logo-white.png"
+        alt="Team Arcis"
+        class="hero-logo"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"
+      >
+      <div class="hero-logo-text" style="display:none; margin-bottom:40px;">
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:clamp(3rem,8vw,6rem); font-weight:800; letter-spacing:-0.04em; color:#f0f0f0; line-height:1;">ARCIS</div>
+      </div>
+
+      <p class="hero-tagline">ANALYSE &nbsp;·&nbsp; ASSEMBLE &nbsp;·&nbsp; AVIATE</p>
+
+      <h1 class="hero-title">
+        Engineering aircraft that<br>compete on the world stage.
+      </h1>
+
+      <p class="hero-desc">
+        Team Arcis is a student engineering team designing, building, and flying
+        radio-controlled aircraft in SAE Aero Design and AIAA Design/Build/Fly competitions.
+      </p>
+
+      <div class="hero-actions">
+        <a href="competitions.html" class="btn btn-primary btn-lg">Explore Our Work</a>
+        <a href="team.html"         class="btn btn-outline btn-lg">Meet the Team</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <svg viewBox="0 0 16 20" stroke-width="1.5"><rect x="1" y="1" width="14" height="18" rx="7"/><line x1="8" y1="6" x2="8" y2="10"/></svg>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ── What is Arcis ─────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="reveal">
+          <span class="eyebrow">Student Engineering</span>
+          <h2 class="h2">An engineering organisation,<br>not just a club.</h2>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <p class="lead" style="margin-bottom:20px;">
+            Arcis operates with technical divisions, a leadership hierarchy, and engineering workflows
+            built around real deliverables. Every member contributes to aircraft that actually fly
+            in front of international judges.
+          </p>
+          <p style="font-size:0.9rem; color:var(--t1); line-height:1.7; margin-bottom:24px;">
+            The team has run continuously across multiple academic years, with each batch
+            building on the last — carrying forward institutional knowledge, design history,
+            and engineering standards.
+          </p>
+          <a href="about.html" class="btn btn-outline">Learn more about Arcis</a>
+        </div>
+      </div>
+
+      <div class="mt-48">
+        <div class="stats-strip reveal">
+          <div class="stat-item">
+            <div class="stat-number">[N]+</div>
+            <div class="stat-label">Active Members</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">[N]</div>
+            <div class="stat-label">Years Active</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">[N]</div>
+            <div class="stat-label">Competitions Entered</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">[N]</div>
+            <div class="stat-label">Alumni</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Competitions ───────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">What We Compete In</span>
+        <h2 class="h2">Two competitions.<br>One engineering culture.</h2>
+      </div>
+
+      <div class="comp-cards">
+        <div class="comp-card reveal">
+          <div class="comp-card-label">SAE Aero Design</div>
+          <h3 class="comp-card-title">Design, Build, Fly for Maximum Payload</h3>
+          <p class="comp-card-body">
+            SAE Aero Design challenges teams to engineer radio-controlled aircraft that carry the
+            greatest possible payload within a defined set of mission rules. The competition
+            evaluates design reports, system integration, and live flight performance.
+          </p>
+          <div class="mt-16">
+            <a href="competitions.html#sae" class="btn btn-ghost btn-sm" style="padding-left:0;">
+              View our SAE work →
+            </a>
+          </div>
+        </div>
+        <div class="comp-card reveal reveal-delay-1">
+          <div class="comp-card-label">AIAA Design/Build/Fly</div>
+          <h3 class="comp-card-title">Mission-Driven Aircraft Design</h3>
+          <p class="comp-card-body">
+            AIAA DBF presents a new, multi-mission scoring scenario each year, requiring teams
+            to optimise their aircraft geometry, payload, and flight profile against a unique
+            set of technical objectives. A written report accounts for a significant portion
+            of the final score.
+          </p>
+          <div class="mt-16">
+            <a href="competitions.html#dbf" class="btn btn-ghost btn-sm" style="padding-left:0;">
+              View our DBF work →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Engineering snapshot ──────────────────────────── -->
+  <section class="section" style="background:var(--bg-1); border-top:1px solid var(--b1);">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">The Engineering Process</span>
+        <h2 class="h2">From concept to flight line.</h2>
+        <p class="lead mt-16" style="max-width:560px;">
+          Every aircraft Arcis produces passes through a disciplined engineering cycle —
+          simulation, prototyping, fabrication, testing, and iteration — before competition day.
+        </p>
+      </div>
+
+      <div class="process-steps reveal">
+        <div class="process-step">
+          <div class="process-num">01</div>
+          <div class="process-title">Analyse</div>
+          <div class="process-body">Aerodynamic simulation, structural analysis, and systems planning before any material is cut.</div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">02</div>
+          <div class="process-title">Design</div>
+          <div class="process-body">Full CAD modelling of airframe, avionics layout, and payload mechanisms. Iterated against competition scoring.</div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">03</div>
+          <div class="process-title">Build</div>
+          <div class="process-body">In-house fabrication using composites, laser cutting, 3D printing, and hand layup in the team workshop.</div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">04</div>
+          <div class="process-title">Fly</div>
+          <div class="process-body">Ground testing, taxi runs, first flights, and competition day. Data collected for the next season's iteration.</div>
+        </div>
+      </div>
+
+      <!-- Engineering photo grid -->
+      <div class="mt-48">
+        <div class="grid-3 reveal">
+          <div class="photo ratio-16-9" style="border-radius:var(--r2)">
+            <span class="photo-label">Workshop / fabrication photo</span>
+          </div>
+          <div class="photo ratio-16-9" style="border-radius:var(--r2)">
+            <span class="photo-label">CAD / design work photo</span>
+          </div>
+          <div class="photo ratio-16-9" style="border-radius:var(--r2)">
+            <span class="photo-label">Flight / competition photo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Team snapshot ──────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="grid-2" style="align-items:center; gap:64px;">
+        <div class="reveal">
+          <div class="photo ratio-4-3" style="border-radius:var(--r2)">
+            <span class="photo-label">Current team group photo</span>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <span class="eyebrow">The Team</span>
+          <h2 class="h2">Organised by division.<br>United by the aircraft.</h2>
+          <p style="color:var(--t1); font-size:0.95rem; line-height:1.7; margin-top:16px; margin-bottom:28px;">
+            Arcis is structured across technical divisions — Aerodynamics, Structures, Avionics,
+            and Manufacturing — each led by experienced members. The team is guided by faculty
+            advisors and a core leadership of three.
+          </p>
+          <div class="feat-list" style="margin-bottom:28px;">
+            <div class="feat-item">
+              <div class="feat-dot"></div>
+              <div class="feat-text">Division-based technical structure</div>
+            </div>
+            <div class="feat-item">
+              <div class="feat-dot"></div>
+              <div class="feat-text">Faculty mentorship and institutional support</div>
+            </div>
+            <div class="feat-item">
+              <div class="feat-dot"></div>
+              <div class="feat-text">Continuity across multiple graduating batches</div>
+            </div>
+          </div>
+          <a href="team.html" class="btn btn-outline">Meet the full team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── History teaser ─────────────────────────────────── -->
+  <section class="section" style="background:var(--bg-1); border-top:1px solid var(--b1);">
+    <div class="container">
+      <div class="grid-2" style="align-items:start; gap:64px;">
+        <div class="reveal">
+          <span class="eyebrow">History</span>
+          <h2 class="h2">Built across years,<br>not just seasons.</h2>
+          <p style="color:var(--t1); font-size:0.95rem; line-height:1.7; margin-top:16px; margin-bottom:28px;">
+            Arcis has accumulated several years of competition history, design archives,
+            and alumni who have gone on to careers in aerospace, engineering, and research.
+            Each season adds to a growing body of institutional knowledge.
+          </p>
+          <a href="history.html" class="btn btn-outline">View team history</a>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <!-- Timeline preview -->
+          <div style="display:flex; flex-direction:column; gap:0; border:1px solid var(--b1); border-radius:var(--r2); overflow:hidden;">
+            <div style="padding:20px 24px; border-bottom:1px solid var(--b1); display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-family:var(--fm); font-size:0.62rem; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:4px;">[YEAR] — Current Season</div>
+                <div style="font-family:var(--fh); font-weight:600; font-size:0.95rem;">[Current project name / competition]</div>
+              </div>
+              <div class="tag tag-accent">Active</div>
+            </div>
+            <div style="padding:20px 24px; border-bottom:1px solid var(--b1); display:flex; justify-content:space-between; align-items:center; opacity:0.7;">
+              <div>
+                <div style="font-family:var(--fm); font-size:0.62rem; color:var(--t2); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:4px;">[YEAR] — Previous Season</div>
+                <div style="font-family:var(--fh); font-weight:600; font-size:0.95rem;">[Previous project name / competition]</div>
+              </div>
+              <div class="tag">Completed</div>
+            </div>
+            <div style="padding:20px 24px; display:flex; justify-content:space-between; align-items:center; opacity:0.4;">
+              <div>
+                <div style="font-family:var(--fm); font-size:0.62rem; color:var(--t2); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:4px;">[YEAR] — Earlier Season</div>
+                <div style="font-family:var(--fh); font-weight:600; font-size:0.95rem;">[Earlier project name / competition]</div>
+              </div>
+              <div class="tag">Completed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Sponsors ───────────────────────────────────────── -->
+  <section class="section--tight section" style="border-top:1px solid var(--b0);">
+    <div class="container">
+      <div class="section-head centered reveal">
+        <span class="eyebrow">Supported By</span>
+        <h2 class="h2" style="font-size:1.5rem;">Our sponsors make the aircraft possible.</h2>
+      </div>
+      <div class="sponsor-logos reveal" style="justify-content:center;">
+        <div class="sponsor-logo"><span class="sponsor-logo-ph">Sponsor Name</span></div>
+        <div class="sponsor-logo"><span class="sponsor-logo-ph">Sponsor Name</span></div>
+        <div class="sponsor-logo"><span class="sponsor-logo-ph">Sponsor Name</span></div>
+        <div class="sponsor-logo"><span class="sponsor-logo-ph">Sponsor Name</span></div>
+        <div class="sponsor-logo"><span class="sponsor-logo-ph">Sponsor Name</span></div>
+      </div>
+      <div style="text-align:center; margin-top:24px;" class="reveal">
+        <a href="sponsors.html" class="btn btn-ghost">View all sponsors →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ────────────────────────────────────────────── -->
+  <div class="cta-banner reveal">
+    <span class="eyebrow">Join or Support Arcis</span>
+    <h2 class="h2">Interested in working with us?</h2>
+    <p class="lead">Whether you're a prospective member, sponsor, or collaborator — we'd like to hear from you.</p>
+    <div class="btn-group">
+      <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+      <a href="sponsors.html" class="btn btn-outline">Become a Sponsor</a>
+    </div>
+  </div>
+
+</main>
+
+<!-- ── Footer ────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="assets/images/logo-white.png" alt="Team Arcis" class="footer-logo"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+        <div class="footer-logo-fallback" style="display:none">ARCIS</div>
+        <div class="footer-tagline">Analyse · Assemble · Aviate</div>
+        <p class="footer-desc">A student engineering team competing in SAE Aero Design and AIAA Design/Build/Fly.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Team</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="team.html">Current Team</a></li>
+          <li><a href="team.html#leadership">Leadership</a></li>
+          <li><a href="team.html#mentors">Mentors</a></li>
+          <li><a href="history.html">History</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Work</h4>
+        <ul>
+          <li><a href="competitions.html">Competitions</a></li>
+          <li><a href="competitions.html#projects">Projects</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="sponsors.html">Sponsors</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:team@arcis.edu" class="footer-contact-email">[team email]</a>
+        <p class="footer-contact-loc">[College Name]<br>[City, State]</p>
+        <div class="social-links">
+          <a href="#" class="social-link">Instagram</a>
+          <a href="#" class="social-link">LinkedIn</a>
+          <a href="#" class="social-link">YouTube</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Team Arcis. All rights reserved.</p>
+      <p style="color:var(--t3); font-size:0.72rem; font-family:var(--fm); letter-spacing:0.06em;">SAE AERO DESIGN · AIAA DBF</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

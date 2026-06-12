@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Competitions & Projects — Team Arcis</title>
+  <meta name="description" content="Team Arcis competes in SAE Aero Design and AIAA Design/Build/Fly. Explore our engineering process, project archives, and competition participation.">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/images/logo-white.png" alt="Team Arcis" class="nav-logo-img"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="nav-logo-fallback" style="display:none">ARCIS</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html"        class="nav-link">Home</a>
+      <a href="about.html"        class="nav-link">About</a>
+      <a href="team.html"         class="nav-link">Team</a>
+      <a href="history.html"      class="nav-link">History</a>
+      <a href="competitions.html" class="nav-link">Competitions</a>
+      <a href="sponsors.html"     class="nav-link">Sponsors</a>
+      <a href="gallery.html"      class="nav-link">Gallery</a>
+      <a href="contact.html"      class="nav-link">Contact</a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-overlay" id="navOverlay">
+  <a href="index.html"        class="nav-overlay-link">Home</a>
+  <a href="about.html"        class="nav-overlay-link">About</a>
+  <a href="team.html"         class="nav-overlay-link">Team</a>
+  <a href="history.html"      class="nav-overlay-link">History</a>
+  <a href="competitions.html" class="nav-overlay-link">Competitions</a>
+  <a href="sponsors.html"     class="nav-overlay-link">Sponsors</a>
+  <a href="gallery.html"      class="nav-overlay-link">Gallery</a>
+  <a href="contact.html"      class="nav-overlay-link">Contact</a>
+  <div class="nav-overlay-meta"><p>SAE Aero Design · AIAA Design/Build/Fly</p></div>
+</div>
+
+<main>
+
+  <!-- ── Page header ───────────────────────────────────── -->
+  <section class="page-header">
+    <div class="container">
+      <span class="eyebrow">Engineering Work</span>
+      <h1 class="h1" style="max-width:620px; margin-bottom:16px;">
+        Competitions,<br>projects, and the<br>work behind them.
+      </h1>
+      <p class="lead" style="max-width:520px;">
+        Every Arcis aircraft begins as a problem statement and ends on a competition flight line.
+        This page documents what we build, how we build it, and where we take it.
+      </p>
+      <div class="flex gap-8 mt-32" style="flex-wrap:wrap;">
+        <a href="#sae"      class="btn btn-outline btn-sm">SAE Aero Design</a>
+        <a href="#dbf"      class="btn btn-outline btn-sm">AIAA DBF</a>
+        <a href="#process"  class="btn btn-outline btn-sm">Engineering Process</a>
+        <a href="#projects" class="btn btn-outline btn-sm">Project Archive</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Current season highlight ──────────────────────── -->
+  <section class="section" style="background:var(--bg-1); border-top:1px solid var(--b1);">
+    <div class="container">
+      <div class="grid-2" style="gap:64px; align-items:center;">
+        <div class="reveal">
+          <span class="eyebrow">Current Season · [YEAR]</span>
+          <h2 class="h2" style="margin-bottom:16px;">[Current aircraft or project name]</h2>
+          <p style="color:var(--t1); font-size:0.95rem; line-height:1.75; margin-bottom:20px;">
+            [Brief description of the current season's aircraft — what competition, what class,
+            what are the primary design objectives, and what makes this year's approach
+            interesting. 2–3 sentences. Replace with actual content.]
+          </p>
+          <div style="display:flex; flex-direction:column; gap:0; border:1px solid var(--b1); border-radius:var(--r2); overflow:hidden; margin-bottom:24px;">
+            <div class="info-row" style="padding-inline:16px;">
+              <span class="info-key">Competition</span>
+              <span class="info-val">[Competition name and category]</span>
+            </div>
+            <div class="info-row" style="padding-inline:16px;">
+              <span class="info-key">Aircraft class</span>
+              <span class="info-val">[Regular / Advanced / Micro / Mission class]</span>
+            </div>
+            <div class="info-row" style="padding-inline:16px;">
+              <span class="info-key">Wingspan</span>
+              <span class="info-val">[X] m (estimated)</span>
+            </div>
+            <div class="info-row" style="padding-inline:16px;">
+              <span class="info-key">Propulsion</span>
+              <span class="info-val">[Electric brushless / IC engine]</span>
+            </div>
+            <div class="info-row" style="padding-inline:16px;">
+              <span class="info-key">Status</span>
+              <span class="info-val"><span class="tag tag-accent" style="font-size:0.6rem;">In Progress</span></span>
+            </div>
+          </div>
+          <a href="gallery.html" class="btn btn-outline">View build photos</a>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <div class="photo ratio-3-2" style="border-radius:var(--r2); border:1px solid var(--b1);">
+            <span class="photo-label">Current aircraft render / build photo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SAE Aero Design ────────────────────────────────── -->
+  <section class="section" id="sae">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Competition</span>
+        <h2 class="h2">SAE Aero Design</h2>
+        <p class="lead mt-16" style="max-width:560px;">
+          The Society of Automotive Engineers Aero Design challenge is an annual international
+          competition testing student teams on aircraft design, construction, and flight performance.
+        </p>
+      </div>
+
+      <div class="grid-2" style="gap:48px; align-items:start; margin-bottom:48px;">
+        <div class="reveal">
+          <p style="color:var(--t1); font-size:0.92rem; line-height:1.75; margin-bottom:16px;">
+            Teams design, build, and fly radio-controlled aircraft to carry maximum payload weight
+            within a constrained set of design rules. The Regular class — Arcis's primary entry —
+            optimises for payload fraction: the ratio of payload weight to aircraft empty weight.
+          </p>
+          <p style="color:var(--t1); font-size:0.92rem; line-height:1.75;">
+            Scoring combines the design report (submitted before the event), the aircraft's
+            actual payload performance in flight, and adherence to technical regulations.
+            The competition draws teams from institutions across multiple countries.
+          </p>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <div style="border:1px solid var(--b1); border-radius:var(--r2); overflow:hidden;">
+            <div style="padding:20px 24px; border-bottom:1px solid var(--b1); background:var(--bg-2);">
+              <div style="font-family:var(--fm); font-size:0.62rem; color:var(--t2); letter-spacing:0.1em; text-transform:uppercase;">Competition structure</div>
+            </div>
+            <div class="info-row" style="padding-inline:24px;"><span class="info-key">Organiser</span><span class="info-val">SAE International</span></div>
+            <div class="info-row" style="padding-inline:24px;"><span class="info-key">Classes</span><span class="info-val">Regular · Advanced · Micro</span></div>
+            <div class="info-row" style="padding-inline:24px;"><span class="info-key">Primary metric</span><span class="info-val">Payload fraction (payload / empty weight)</span></div>
+            <div class="info-row" style="padding-inline:24px;"><span class="info-key">Deliverables</span><span class="info-val">Design report + flight demonstration</span></div>
+            <div class="info-row" style="padding-inline:24px;"><span class="info-key">Arcis entries</span><span class="info-val">[N] seasons</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAE project cards -->
+      <div class="labeled-divider reveal">
+        <span>SAE Entries by Season</span>
+      </div>
+      <div class="grid-3 reveal">
+        <div class="card">
+          <div class="photo ratio-16-9 card-img">
+            <span class="photo-label">SAE aircraft photo [YEAR]</span>
+          </div>
+          <div class="card-body">
+            <div style="font-family:var(--fm); font-size:0.62rem; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px;">[YEAR] · SAE Aero Design</div>
+            <h4 class="h4" style="margin-bottom:8px;">[Aircraft Name / Designation]</h4>
+            <p style="font-size:0.85rem; color:var(--t1); line-height:1.65; margin-bottom:14px;">
+              [Brief description of this season's SAE entry. Design focus, class, key
+              engineering decisions. Replace with actual content.]
+            </p>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <span class="tag">[Class]</span>
+              <span class="tag">Participated</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="photo ratio-16-9 card-img">
+            <span class="photo-label">SAE aircraft photo [YEAR-1]</span>
+          </div>
+          <div class="card-body">
+            <div style="font-family:var(--fm); font-size:0.62rem; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px;">[YEAR-1] · SAE Aero Design</div>
+            <h4 class="h4" style="margin-bottom:8px;">[Aircraft Name / Designation]</h4>
+            <p style="font-size:0.85rem; color:var(--t1); line-height:1.65; margin-bottom:14px;">
+              [Description of previous SAE entry. Replace with actual content.]
+            </p>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <span class="tag">[Class]</span>
+              <span class="tag">Participated</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="photo ratio-16-9 card-img">
+            <span class="photo-label">SAE aircraft photo [YEAR-2]</span>
+          </div>
+          <div class="card-body">
+            <div style="font-family:var(--fm); font-size:0.62rem; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px;">[YEAR-2] · SAE Aero Design</div>
+            <h4 class="h4" style="margin-bottom:8px;">[Aircraft Name / Designation]</h4>
+            <p style="font-size:0.85rem; color:var(--t1); line-height:1.65; margin-bottom:14px;">
+              [Description. Replace with actual content.]
+            </p>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <span class="tag">[Class]</span>
+              <span class="tag">Participated</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── AIAA DBF ───────────────────────────────────────── -->
+  <section class="section" id="dbf" style="background:var(--bg-1); border-top:1px solid var(--b1);">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Competition</span>
+        <h2 class="h2">AIAA Design/Build/Fly</h2>
+        <p class="lead mt-16" style="max-width:560px;">
+          AIAA DBF introduces a new scoring scenario every year, requiring teams to redesign
+          their aircraft philosophy around novel mission objectives and constraints.
+        </p>
+      </div>
+
+      <div class="grid-2" style="gap:48px; align-items:start; margin-bottom:48px;">
+        <div class="reveal">
+          <p style="color:var(--t1); font-size:0.92rem; line-height:1.75; margin-bottom:16px;">
+            Unlike competitions with stable rules, DBF changes its mission requirements annually —
+            meaning teams cannot simply iterate on a proven design. Each season demands fresh
+            trade studies, aerodynamic analysis, and mission-specific optimisation.
+          </p>
+          <p style="color:var(--t1); font-size:0.92rem; line-height:1.75;">
+            The written technical report carries substantial scoring weight, pushing teams
+            to document their design rationale rigorously — not just build a functional aircraft.
+            This makes DBF one of the most comprehensive student engineering competitions in aviation.
+          </p>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <div style="border:1px solid var(--b1); border-radius:var(--r2); overflow:hidden;">
+            <div style="padding:20px 24px; border-bottom:1px solid var(--b1); background:var(--bg-3);">
+              <div style="font-family:var(--fm); font-size:0.62rem; color:var(--t2); letter-spacing:0.1em; text-transform:uppercase;">Competition structure</div>
+            </div>
+            <div class="info-row" style="padding-inline:24px;"><span class="info-key">Organiser</span><span class="info-val">AIAA / Cessna / Raytheon</span></div>
+            <div class="info-row" style="padding-inline:24px;"><span class="info-key">Rules</span><span class="info-val">New scenario released annually</span></div>
+            <div class="info-row" style="padding-inline:24px;"><span class="info-key">Scoring</span><span class="info-val">Written report + ground + flight missions</span></div>
+            <div class="info-row" style="padding-inline:24px;"><span class="info-key">Report weight</span><span class="info-val">Significant (varies by year)</span></div>
+            <div class="info-row" style="padding-inline:24px;"><span class="info-key">Arcis entries</span><span class="info-val">[N] seasons</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DBF project cards -->
+      <div class="labeled-divider reveal">
+        <span>DBF Entries by Season</span>
+      </div>
+      <div class="grid-3 reveal">
+        <div class="card">
+          <div class="photo ratio-16-9 card-img">
+            <span class="photo-label">DBF aircraft photo [YEAR]</span>
+          </div>
+          <div class="card-body">
+            <div style="font-family:var(--fm); font-size:0.62rem; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px;">[YEAR] · AIAA DBF</div>
+            <h4 class="h4" style="margin-bottom:8px;">[Aircraft Name / Mission Theme]</h4>
+            <p style="font-size:0.85rem; color:var(--t1); line-height:1.65; margin-bottom:14px;">
+              [Brief description of this DBF entry. Mission objectives, design approach,
+              key engineering trade-offs. Replace with actual content.]
+            </p>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <span class="tag">[Mission theme]</span>
+              <span class="tag">Participated</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="photo ratio-16-9 card-img">
+            <span class="photo-label">DBF aircraft photo [YEAR-1]</span>
+          </div>
+          <div class="card-body">
+            <div style="font-family:var(--fm); font-size:0.62rem; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px;">[YEAR-1] · AIAA DBF</div>
+            <h4 class="h4" style="margin-bottom:8px;">[Aircraft Name / Mission Theme]</h4>
+            <p style="font-size:0.85rem; color:var(--t1); line-height:1.65; margin-bottom:14px;">
+              [Description. Replace with actual content.]
+            </p>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <span class="tag">[Mission theme]</span>
+              <span class="tag">Participated</span>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="border-style:dashed; opacity:0.5;">
+          <div class="card-body" style="display:flex; align-items:center; justify-content:center; min-height:200px; flex-direction:column; gap:8px;">
+            <div style="font-family:var(--fm); font-size:0.65rem; color:var(--t3); letter-spacing:0.1em; text-transform:uppercase;">Add more entries</div>
+            <div style="font-size:0.78rem; color:var(--t3);">Duplicate a card block above</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Engineering process ────────────────────────────── -->
+  <section class="section" id="process">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">How We Work</span>
+        <h2 class="h2">The engineering process<br>behind every aircraft.</h2>
+        <p class="lead mt-16" style="max-width:540px;">
+          Each Arcis aircraft follows a disciplined development cycle. The process is
+          documented, reviewed, and refined each season.
+        </p>
+      </div>
+
+      <!-- Phase grid -->
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-bottom:48px;" class="reveal">
+
+        <div style="padding:28px; border:1px solid var(--b1); border-radius:var(--r2); background:var(--bg-1); display:flex; gap:20px; align-items:flex-start;">
+          <div style="font-family:var(--fm); font-size:1.4rem; color:var(--t3); line-height:1; flex-shrink:0;">01</div>
+          <div>
+            <h4 class="h4" style="margin-bottom:8px;">Requirements & Trade Studies</h4>
+            <p style="font-size:0.87rem; color:var(--t1); line-height:1.7;">
+              Competition rules are parsed and scored to extract the primary optimisation targets.
+              Trade studies compare wing configurations, propulsion options, and payload integration
+              strategies against the scoring function before any design is committed.
+            </p>
+          </div>
+        </div>
+
+        <div style="padding:28px; border:1px solid var(--b1); border-radius:var(--r2); background:var(--bg-1); display:flex; gap:20px; align-items:flex-start;">
+          <div style="font-family:var(--fm); font-size:1.4rem; color:var(--t3); line-height:1; flex-shrink:0;">02</div>
+          <div>
+            <h4 class="h4" style="margin-bottom:8px;">Aerodynamic Analysis</h4>
+            <p style="font-size:0.87rem; color:var(--t1); line-height:1.7;">
+              Airfoil selection, wing planform optimisation, and drag estimation using computational
+              tools. Lift and drag polars are generated for the design cruise condition and
+              cross-checked against the structural load requirements.
+            </p>
+          </div>
+        </div>
+
+        <div style="padding:28px; border:1px solid var(--b1); border-radius:var(--r2); background:var(--bg-1); display:flex; gap:20px; align-items:flex-start;">
+          <div style="font-family:var(--fm); font-size:1.4rem; color:var(--t3); line-height:1; flex-shrink:0;">03</div>
+          <div>
+            <h4 class="h4" style="margin-bottom:8px;">CAD & Structural Design</h4>
+            <p style="font-size:0.87rem; color:var(--t1); line-height:1.7;">
+              Full 3D CAD model of the airframe including spar layout, rib geometry, fuselage
+              bulkheads, and payload bay. Structural analysis informs material choices across
+              the primary load path — carbon spar, foam core, and glass/carbon composite skin.
+            </p>
+          </div>
+        </div>
+
+        <div style="padding:28px; border:1px solid var(--b1); border-radius:var(--r2); background:var(--bg-1); display:flex; gap:20px; align-items:flex-start;">
+          <div style="font-family:var(--fm); font-size:1.4rem; color:var(--t3); line-height:1; flex-shrink:0;">04</div>
+          <div>
+            <h4 class="h4" style="margin-bottom:8px;">Avionics & Systems Integration</h4>
+            <p style="font-size:0.87rem; color:var(--t1); line-height:1.7;">
+              RC system architecture, servo selection, ESC and motor specification, battery sizing,
+              and CG management. Avionics layout is co-designed with the structural team to avoid
+              conflicts with load paths and access requirements.
+            </p>
+          </div>
+        </div>
+
+        <div style="padding:28px; border:1px solid var(--b1); border-radius:var(--r2); background:var(--bg-1); display:flex; gap:20px; align-items:flex-start;">
+          <div style="font-family:var(--fm); font-size:1.4rem; color:var(--t3); line-height:1; flex-shrink:0;">05</div>
+          <div>
+            <h4 class="h4" style="margin-bottom:8px;">Fabrication</h4>
+            <p style="font-size:0.87rem; color:var(--t1); line-height:1.7;">
+              In-house manufacturing using a combination of laser-cut balsa and plywood frames,
+              foam core wing panels, hand composite layup for structural components, and 3D-printed
+              fixtures and brackets. All fabrication follows the design documentation.
+            </p>
+          </div>
+        </div>
+
+        <div style="padding:28px; border:1px solid var(--b1); border-radius:var(--r2); background:var(--bg-1); display:flex; gap:20px; align-items:flex-start;">
+          <div style="font-family:var(--fm); font-size:1.4rem; color:var(--t3); line-height:1; flex-shrink:0;">06</div>
+          <div>
+            <h4 class="h4" style="margin-bottom:8px;">Ground Testing & First Flight</h4>
+            <p style="font-size:0.87rem; color:var(--t1); line-height:1.7;">
+              Static ground testing, taxi runs, and progressive flight test campaign before
+              competition. Each flight adds data to validate the aerodynamic predictions and
+              refine CG position, trim, and payload configuration.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Process photo strip -->
+      <div class="grid-3 reveal">
+        <div class="photo ratio-4-3" style="border-radius:var(--r2); border:1px solid var(--b1);">
+          <span class="photo-label">CAD / design work in progress</span>
+        </div>
+        <div class="photo ratio-4-3" style="border-radius:var(--r2); border:1px solid var(--b1);">
+          <span class="photo-label">Workshop fabrication — composite layup</span>
+        </div>
+        <div class="photo ratio-4-3" style="border-radius:var(--r2); border:1px solid var(--b1);">
+          <span class="photo-label">Field testing / maiden flight</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Project archive ────────────────────────────────── -->
+  <section class="section" id="projects" style="background:var(--bg-1); border-top:1px solid var(--b1);">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Project Archive</span>
+        <h2 class="h2">All aircraft, all seasons.</h2>
+        <p class="lead mt-16" style="max-width:480px;">
+          A consolidated record of every aircraft Arcis has designed and built since founding.
+        </p>
+      </div>
+
+      <div style="border:1px solid var(--b1); border-radius:var(--r2); overflow:hidden;" class="reveal">
+        <div style="display:grid; grid-template-columns:80px 1fr 120px 120px 140px; gap:0; padding:12px 24px; border-bottom:1px solid var(--b1); background:var(--bg-2);">
+          <div class="micro">Year</div>
+          <div class="micro">Aircraft</div>
+          <div class="micro">Competition</div>
+          <div class="micro">Class</div>
+          <div class="micro">Status</div>
+        </div>
+        <!-- Row — current -->
+        <div style="display:grid; grid-template-columns:80px 1fr 120px 120px 140px; gap:0; padding:16px 24px; border-bottom:1px solid var(--b0); align-items:center; transition:background 0.2s;" onmouseover="this.style.background='var(--bg-2)'" onmouseout="this.style.background=''">
+          <div style="font-family:var(--fm); font-size:0.75rem; color:var(--accent);">[YEAR]</div>
+          <div>
+            <div style="font-weight:600; font-size:0.9rem; margin-bottom:2px;">[Aircraft name]</div>
+            <div style="font-size:0.78rem; color:var(--t2);">[Short description]</div>
+          </div>
+          <div style="font-size:0.82rem; color:var(--t1);">SAE / DBF</div>
+          <div style="font-size:0.82rem; color:var(--t1);">[Class]</div>
+          <div><span class="tag tag-accent" style="font-size:0.6rem;">Active</span></div>
+        </div>
+        <!-- Row Y-1 -->
+        <div style="display:grid; grid-template-columns:80px 1fr 120px 120px 140px; gap:0; padding:16px 24px; border-bottom:1px solid var(--b0); align-items:center; transition:background 0.2s;" onmouseover="this.style.background='var(--bg-2)'" onmouseout="this.style.background=''">
+          <div style="font-family:var(--fm); font-size:0.75rem; color:var(--t2);">[YEAR-1]</div>
+          <div>
+            <div style="font-weight:600; font-size:0.9rem; margin-bottom:2px;">[Aircraft name]</div>
+            <div style="font-size:0.78rem; color:var(--t2);">[Short description]</div>
+          </div>
+          <div style="font-size:0.82rem; color:var(--t1);">SAE / DBF</div>
+          <div style="font-size:0.82rem; color:var(--t1);">[Class]</div>
+          <div><span class="tag" style="font-size:0.6rem;">Completed</span></div>
+        </div>
+        <!-- Row Y-2 -->
+        <div style="display:grid; grid-template-columns:80px 1fr 120px 120px 140px; gap:0; padding:16px 24px; border-bottom:1px solid var(--b0); align-items:center; transition:background 0.2s;" onmouseover="this.style.background='var(--bg-2)'" onmouseout="this.style.background=''">
+          <div style="font-family:var(--fm); font-size:0.75rem; color:var(--t2);">[YEAR-2]</div>
+          <div>
+            <div style="font-weight:600; font-size:0.9rem; margin-bottom:2px;">[Aircraft name]</div>
+            <div style="font-size:0.78rem; color:var(--t2);">[Short description]</div>
+          </div>
+          <div style="font-size:0.82rem; color:var(--t1);">SAE / DBF</div>
+          <div style="font-size:0.82rem; color:var(--t1);">[Class]</div>
+          <div><span class="tag" style="font-size:0.6rem;">Completed</span></div>
+        </div>
+        <!-- Row Y-3 -->
+        <div style="display:grid; grid-template-columns:80px 1fr 120px 120px 140px; gap:0; padding:16px 24px; align-items:center; transition:background 0.2s;" onmouseover="this.style.background='var(--bg-2)'" onmouseout="this.style.background=''">
+          <div style="font-family:var(--fm); font-size:0.75rem; color:var(--t2);">[YEAR-3]</div>
+          <div>
+            <div style="font-weight:600; font-size:0.9rem; margin-bottom:2px;">[Aircraft name]</div>
+            <div style="font-size:0.78rem; color:var(--t2);">[Short description]</div>
+          </div>
+          <div style="font-size:0.82rem; color:var(--t1);">SAE / DBF</div>
+          <div style="font-size:0.82rem; color:var(--t1);">[Class]</div>
+          <div><span class="tag" style="font-size:0.6rem;">Completed</span></div>
+        </div>
+      </div>
+
+      <p style="font-size:0.78rem; color:var(--t2); margin-top:14px; font-family:var(--fm);" class="reveal">
+        Add rows to this table as new seasons are completed.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── CTA ───────────────────────────────────────────── -->
+  <div class="cta-banner reveal">
+    <span class="eyebrow">Gallery & Archive</span>
+    <h2 class="h2">See the aircraft in detail.</h2>
+    <p class="lead">Browse the full photo archive of builds, workshops, and competition days.</p>
+    <div class="btn-group">
+      <a href="gallery.html"  class="btn btn-primary">Open Gallery</a>
+      <a href="history.html"  class="btn btn-outline">View History</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="assets/images/logo-white.png" alt="Team Arcis" class="footer-logo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="footer-logo-fallback" style="display:none">ARCIS</div>
+        <div class="footer-tagline">Analyse · Assemble · Aviate</div>
+        <p class="footer-desc">A student engineering team competing in SAE Aero Design and AIAA Design/Build/Fly.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Team</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="team.html">Current Team</a></li>
+          <li><a href="history.html">History</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Work</h4>
+        <ul>
+          <li><a href="competitions.html">Competitions</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="sponsors.html">Sponsors</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:team@arcis.edu" class="footer-contact-email">[team email]</a>
+        <p class="footer-contact-loc">[College Name]<br>[City, State]</p>
+        <div class="social-links">
+          <a href="#" class="social-link">Instagram</a>
+          <a href="#" class="social-link">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Team Arcis. All rights reserved.</p>
+      <p style="color:var(--t3); font-size:0.72rem; font-family:var(--fm); letter-spacing:0.06em;">SAE AERO DESIGN · AIAA DBF</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
