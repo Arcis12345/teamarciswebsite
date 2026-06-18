@@ -777,7 +777,7 @@ a.tag-link:hover {
   content: '';
   position: absolute;
   inset: 0;
-  background-image:
+  /* background-image: */
     /* linear-gradient(var(--b0) 1px, transparent 1px),
     linear-gradient(90deg, var(--b0) 1px, transparent 1px); */
   /* background-size: 24px 24px; */
