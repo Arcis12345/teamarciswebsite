@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gallery — Team Arcis</title>
-  <meta name="description" content="Photos from Team Arcis — build sessions, workshop work, competition days, and team events.">
+  <title>Team Arcis</title>
   <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/images/arcis black circle.png" type="image/png">
   <style>
     /* Lightbox */
     .lightbox {
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(0,0,0,0.95);
+      background: rgba(0, 0, 0, 0.95);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -23,27 +23,41 @@
       pointer-events: none;
       transition: opacity 0.25s;
     }
-    .lightbox.open { opacity: 1; pointer-events: all; }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
     .lightbox img {
       max-width: 90vw;
       max-height: 80vh;
       object-fit: contain;
       border-radius: var(--r2);
     }
+
     .lightbox-close {
       position: absolute;
-      top: 24px; right: 24px;
-      width: 40px; height: 40px;
+      top: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       border: 1px solid var(--b2);
       background: var(--bg-2);
       color: var(--t0);
       font-size: 1.2rem;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       transition: background 0.2s;
     }
-    .lightbox-close:hover { background: var(--bg-3); }
+
+    .lightbox-close:hover {
+      background: var(--bg-3);
+    }
+
     #lightboxCaption {
       font-size: 0.85rem;
       color: var(--t1);
@@ -53,242 +67,303 @@
     }
 
     /* Masonry-style variable heights */
-    .gallery-grid { align-items: start; }
-    .gi-tall  { aspect-ratio: 2 / 3; }
-    .gi-wide  { aspect-ratio: 16 / 9; }
-    .gi-sq    { aspect-ratio: 1 / 1; }
-    .gi-std   { aspect-ratio: 4 / 3; }
+    .gallery-grid {
+      align-items: start;
+    }
+
+    .gi-tall {
+      aspect-ratio: 2 / 3;
+    }
+
+    .gi-wide {
+      aspect-ratio: 16 / 9;
+    }
+
+    .gi-sq {
+      aspect-ratio: 1 / 1;
+    }
+
+    .gi-std {
+      aspect-ratio: 4 / 3;
+    }
   </style>
 </head>
+
 <body>
 
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="assets/images/logo-white.png" alt="Team Arcis" class="nav-logo-img"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-      <span class="nav-logo-fallback" style="display:none">ARCIS</span>
-    </a>
-    <div class="nav-links">
-      <a href="index.html"        class="nav-link">Home</a>
-      <a href="about.html"        class="nav-link">About</a>
-      <a href="team.html"         class="nav-link">Team</a>
-      <a href="history.html"      class="nav-link">History</a>
-      <a href="competitions.html" class="nav-link">Competitions</a>
-      <a href="sponsors.html"     class="nav-link">Sponsors</a>
-      <a href="gallery.html"      class="nav-link">Gallery</a>
-      <a href="contact.html"      class="nav-link">Contact</a>
-    </div>
-    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<div class="nav-overlay" id="navOverlay">
-  <a href="index.html"        class="nav-overlay-link">Home</a>
-  <a href="about.html"        class="nav-overlay-link">About</a>
-  <a href="team.html"         class="nav-overlay-link">Team</a>
-  <a href="history.html"      class="nav-overlay-link">History</a>
-  <a href="competitions.html" class="nav-overlay-link">Competitions</a>
-  <a href="sponsors.html"     class="nav-overlay-link">Sponsors</a>
-  <a href="gallery.html"      class="nav-overlay-link">Gallery</a>
-  <a href="contact.html"      class="nav-overlay-link">Contact</a>
-  <div class="nav-overlay-meta"><p>SAE Aero Design · AIAA Design/Build/Fly</p></div>
-</div>
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <button class="lightbox-close" aria-label="Close">×</button>
-  <img id="lightboxImg" src="" alt="">
-  <div id="lightboxCaption"></div>
-</div>
-
-<main>
-
-  <!-- ── Page header ───────────────────────────────────── -->
-  <section class="page-header">
-    <div class="container">
-      <span class="eyebrow">Photo Archive</span>
-      <h1 class="h1" style="max-width:560px; margin-bottom:16px;">
-        The team in<br>the workshop and<br>on the flight line.
-      </h1>
-      <p class="lead" style="max-width:480px;">
-        A photo record of Arcis's build sessions, engineering work, competition days,
-        and team moments. Updated each season.
-      </p>
-    </div>
-  </section>
-
-  <!-- ── Gallery ───────────────────────────────────────── -->
-  <section class="section--tight section">
-    <div class="container">
-
-      <!-- Filters -->
-      <div class="gallery-filters reveal">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="build">Build &amp; Workshop</button>
-        <button class="filter-btn" data-filter="competition">Competition</button>
-        <button class="filter-btn" data-filter="aircraft">Aircraft</button>
-        <button class="filter-btn" data-filter="team">Team</button>
-        <button class="filter-btn" data-filter="testing">Testing &amp; Flights</button>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/images/logo-white.png" alt="Team Arcis" class="nav-logo-img"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="nav-logo-fallback" style="display:none">ARCIS</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="team.html" class="nav-link">Team</a>
+        <a href="history.html" class="nav-link">History</a>
+        <!-- <a href="competitions.html" class="nav-link">Competitions</a> -->
+        <a href="sponsors.html" class="nav-link">Sponsors</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="contact.html" class="nav-link">Contact</a>
       </div>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
 
-      <!-- Grid -->
-      <!-- To add real photos: add src="" to the <img> inside each .gallery-item,
-           set data-src to the same path for lightbox, and remove the .gallery-item-label span. -->
-      <div class="gallery-grid reveal">
+  <div class="nav-overlay" id="navOverlay">
+    <a href="index.html" class="nav-overlay-link">Home</a>
+    <a href="about.html" class="nav-overlay-link">About</a>
+    <a href="team.html" class="nav-overlay-link">Team</a>
+    <a href="history.html" class="nav-overlay-link">History</a>
+    <!-- <a href="competitions.html" class="nav-overlay-link">Competitions</a> -->
+    <a href="sponsors.html" class="nav-overlay-link">Sponsors</a>
+    <a href="gallery.html" class="nav-overlay-link">Gallery</a>
+    <a href="contact.html" class="nav-overlay-link">Contact</a>
+    <div class="nav-overlay-meta">
+      <p>SAE Aero Design · AIAA Design/Build/Fly</p>
+    </div>
+  </div>
 
-        <!-- Row 1 -->
-        <div class="gallery-item span-2 gi-wide" data-category="competition" data-caption="Competition day — flight line [YEAR]">
-          <span class="gallery-item-label">Competition · flight line [YEAR]</span>
-          <div class="gallery-item-overlay"><span class="gallery-caption">Competition day — flight line [YEAR]</span></div>
-        </div>
-        <div class="gallery-item gi-std" data-category="build" data-caption="Workshop — composite layup">
-          <span class="gallery-item-label">Build · composite layup</span>
-          <div class="gallery-item-overlay"><span class="gallery-caption">Workshop — composite layup</span></div>
-        </div>
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Close">×</button>
+    <img id="lightboxImg" src="" alt="">
+    <div id="lightboxCaption"></div>
+  </div>
 
-        <!-- Row 2 -->
-        <div class="gallery-item gi-tall" data-category="aircraft" data-caption="Current aircraft — [YEAR]">
-          <span class="gallery-item-label">Aircraft · [YEAR]</span>
-          <div class="gallery-item-overlay"><span class="gallery-caption">Current aircraft — [YEAR]</span></div>
-        </div>
-        <div class="gallery-item gi-std" data-category="build" data-caption="Fuselage assembly in workshop">
-          <span class="gallery-item-label">Build · fuselage assembly</span>
-          <div class="gallery-item-overlay"><span class="gallery-caption">Fuselage assembly in workshop</span></div>
-        </div>
-        <div class="gallery-item gi-std" data-category="team" data-caption="Team photo — [YEAR]">
-          <span class="gallery-item-label">Team · group photo [YEAR]</span>
-          <div class="gallery-item-overlay"><span class="gallery-caption">Team photo — [YEAR]</span></div>
-        </div>
+  <main>
 
-        <!-- Row 3 -->
-        <div class="gallery-item gi-wide" data-category="testing" data-caption="First flight — [YEAR] aircraft">
-          <span class="gallery-item-label">Testing · first flight [YEAR]</span>
-          <div class="gallery-item-overlay"><span class="gallery-caption">First flight — [YEAR] aircraft</span></div>
-        </div>
-        <div class="gallery-item gi-sq" data-category="build" data-caption="Avionics wiring and integration">
-          <span class="gallery-item-label">Build · avionics</span>
-          <div class="gallery-item-overlay"><span class="gallery-caption">Avionics wiring and integration</span></div>
-        </div>
-
-        <!-- Row 4 -->
-        <div class="gallery-item gi-sq" data-category="build" data-caption="Wing spar fabrication">
-          <span class="gallery-item-label">Build · wing spar</span>
-          <div class="gallery-item-overlay"><span class="gallery-caption">Wing spar fabrication</span></div>
-        </div>
-        <div class="gallery-item gi-sq" data-category="competition" data-caption="Technical inspection at competition">
-          <span class="gallery-item-label">Competition · tech inspection</span>
-          <div class="gallery-item-overlay"><span class="gallery-caption">Technical inspection at competition</span></div>
-        </div>
-        <div class="gallery-item gi-wide" data-category="aircraft" data-caption="Aircraft — [YEAR-1] season">
-          <span class="gallery-item-label">Aircraft · [YEAR-1]</span>
-          <div class="gallery-item-overlay"><span class="gallery-caption">Aircraft — [YEAR-1] season</span></div>
-        </div>
-
-        <!-- Row 5 -->
-        <div class="gallery-item gi-std" data-category="team" data-caption="Workshop session — [YEAR]">
-          <span class="gallery-item-label">Team · workshop session</span>
-          <div class="gallery-item-overlay"><span class="gallery-caption">Workshop session — [YEAR]</span></div>
-        </div>
-        <div class="gallery-item gi-std" data-category="testing" data-caption="Ground test run — payload loading">
-          <span class="gallery-item-label">Testing · ground test</span>
-          <div class="gallery-item-overlay"><span class="gallery-caption">Ground test run — payload loading</span></div>
-        </div>
-        <div class="gallery-item gi-std" data-category="build" data-caption="3D printing fixtures and brackets">
-          <span class="gallery-item-label">Build · 3D printing</span>
-          <div class="gallery-item-overlay"><span class="gallery-caption">3D printing fixtures and brackets</span></div>
-        </div>
-
-        <!-- Row 6 -->
-        <div class="gallery-item span-2 gi-wide" data-category="team" data-caption="Full team — competition site [YEAR]">
-          <span class="gallery-item-label">Team · competition site group photo [YEAR]</span>
-          <div class="gallery-item-overlay"><span class="gallery-caption">Full team — competition site [YEAR]</span></div>
-        </div>
-        <div class="gallery-item gi-std" data-category="competition" data-caption="Aircraft on the flight line">
-          <span class="gallery-item-label">Competition · on the flight line</span>
-          <div class="gallery-item-overlay"><span class="gallery-caption">Aircraft on the flight line</span></div>
-        </div>
-
-        <!-- Row 7 — older seasons -->
-        <div class="gallery-item gi-std" data-category="aircraft" data-caption="[YEAR-2] aircraft — three-quarter view">
-          <span class="gallery-item-label">Aircraft · [YEAR-2]</span>
-          <div class="gallery-item-overlay"><span class="gallery-caption">[YEAR-2] aircraft</span></div>
-        </div>
-        <div class="gallery-item gi-std" data-category="build" data-caption="Early build — [YEAR-2] season">
-          <span class="gallery-item-label">Build · early [YEAR-2]</span>
-          <div class="gallery-item-overlay"><span class="gallery-caption">Early build — [YEAR-2] season</span></div>
-        </div>
-        <div class="gallery-item gi-std" data-category="testing" data-caption="Taxi tests — [YEAR-2]">
-          <span class="gallery-item-label">Testing · taxi runs [YEAR-2]</span>
-          <div class="gallery-item-overlay"><span class="gallery-caption">Taxi tests — [YEAR-2]</span></div>
-        </div>
-
-      </div><!-- /gallery-grid -->
-
-      <!-- Add photos note -->
-      <div style="margin-top:32px; padding:20px 24px; border:1px dashed var(--b1); border-radius:var(--r2); text-align:center;" class="reveal">
-        <p style="font-family:var(--fm); font-size:0.68rem; color:var(--t3); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px;">How to add photos</p>
-        <p style="font-size:0.85rem; color:var(--t2); max-width:560px; margin:0 auto; line-height:1.65;">
-          Place image files in <code style="background:var(--bg-3);padding:2px 6px;border-radius:3px;font-size:0.8rem;">assets/images/gallery/</code>.
-          Add an <code style="background:var(--bg-3);padding:2px 6px;border-radius:3px;font-size:0.8rem;">&lt;img&gt;</code> tag inside each
-          <code style="background:var(--bg-3);padding:2px 6px;border-radius:3px;font-size:0.8rem;">.gallery-item</code> and set
-          <code style="background:var(--bg-3);padding:2px 6px;border-radius:3px;font-size:0.8rem;">data-src</code> to the same path for lightbox support.
-          Set <code style="background:var(--bg-3);padding:2px 6px;border-radius:3px;font-size:0.8rem;">data-category</code> to filter it correctly.
+    <!-- ── Page header ───────────────────────────────────── -->
+    <section class="page-header">
+      <div class="container">
+        <span class="eyebrow">Photo Archive</span>
+        <h1 class="h1" style="max-width:560px; margin-bottom:16px;">
+          The team in<br>the workshop and<br>on the flight line.
+        </h1>
+        <p class="lead" style="max-width:480px;">
+          A photo record of Arcis's build sessions, engineering work, competition days,
+          and team moments. Updated each season.
         </p>
       </div>
+    </section>
 
-    </div>
-  </section>
+    <!-- ── Gallery ───────────────────────────────────────── -->
+    <section class="section--tight section">
+      <div class="container">
 
-</main>
-
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <img src="assets/images/logo-white.png" alt="Team Arcis" class="footer-logo"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-        <div class="footer-logo-fallback" style="display:none">ARCIS</div>
-        <div class="footer-tagline">Analyse · Assemble · Aviate</div>
-        <p class="footer-desc">A student engineering team competing in SAE Aero Design and AIAA Design/Build/Fly.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Team</h4>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="team.html">Current Team</a></li>
-          <li><a href="history.html">History</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Work</h4>
-        <ul>
-          <li><a href="competitions.html">Competitions</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="sponsors.html">Sponsors</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <a href="mailto:team@arcis.edu" class="footer-contact-email">[team email]</a>
-        <p class="footer-contact-loc">[College Name]<br>[City, State]</p>
-        <div class="social-links">
-          <a href="#" class="social-link">Instagram</a>
-          <a href="#" class="social-link">LinkedIn</a>
-          <a href="#" class="social-link">YouTube</a>
+        <!-- Filters -->
+        <div class="gallery-filters reveal">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="build">Build &amp; Workshop</button>
+          <button class="filter-btn" data-filter="competition">Competition</button>
+          <button class="filter-btn" data-filter="aircraft">Aircraft</button>
+          <button class="filter-btn" data-filter="team">Team</button>
+          <button class="filter-btn" data-filter="testing">Testing &amp; Flights</button>
         </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© <span id="year"></span> Team Arcis. All rights reserved.</p>
-      <p style="color:var(--t3); font-size:0.72rem; font-family:var(--fm); letter-spacing:0.06em;">SAE AERO DESIGN · AIAA DBF</p>
+
+        <!-- Grid -->
+        <!-- To add real photos: add src="" to the <img> inside each .gallery-item,
+           set data-src to the same path for lightbox, and remove the .gallery-item-label span. -->
+<div class="gallery-grid reveal">
+
+  <!-- Row 1 -->
+  <div class="gallery-item span-2 gi-wide" data-category="competition"
+    data-caption="Competition day — flight line [YEAR]">
+    <img src="assets/images/gallery/1.jpg" alt="Competition Flight Line"
+      class="gallery-img">
+    <div class="gallery-item-overlay">
+      <span class="gallery-caption">Competition day — flight line [YEAR]</span>
     </div>
   </div>
-</footer>
 
-<script src="assets/js/main.js"></script>
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <div class="gallery-item gi-std" data-category="build" data-caption="Workshop — composite layup">
+    <img src="assets/images/gallery/2.jpg" alt="Workshop Composite Layup" class="gallery-img">
+    <div class="gallery-item-overlay">
+      <span class="gallery-caption">Workshop — composite layup</span>
+    </div>
+  </div>
+
+  <!-- Row 2 -->
+  <div class="gallery-item gi-tall" data-category="aircraft" data-caption="Current aircraft — [YEAR]">
+    <img src="assets/images/gallery/3.jpg" alt="Current Aircraft" class="gallery-img">
+    <div class="gallery-item-overlay">
+      <span class="gallery-caption">Current aircraft — [YEAR]</span>
+    </div>
+  </div>
+
+  <div class="gallery-item gi-std" data-category="build" data-caption="Fuselage assembly in workshop">
+    <img src="assets/images/gallery/4.jpg" alt="Fuselage Assembly" class="gallery-img">
+    <div class="gallery-item-overlay">
+      <span class="gallery-caption">Fuselage assembly in workshop</span>
+    </div>
+  </div>
+
+  <div class="gallery-item gi-std" data-category="team" data-caption="Team photo — [YEAR]">
+    <img src="assets/images/gallery/5.jpg" alt="Team Photo" class="gallery-img">
+    <div class="gallery-item-overlay">
+      <span class="gallery-caption">Team photo — [YEAR]</span>
+    </div>
+  </div>
+
+  <!-- Row 3 -->
+  <div class="gallery-item gi-wide" data-category="testing" data-caption="First flight — [YEAR] aircraft">
+    <img src="assets/images/gallery/6.jpg" alt="First Flight" class="gallery-img">
+    <div class="gallery-item-overlay">
+      <span class="gallery-caption">First flight — [YEAR] aircraft</span>
+    </div>
+  </div>
+
+  <div class="gallery-item gi-sq" data-category="build" data-caption="Avionics wiring and integration">
+    <img src="assets/images/gallery/7.jpg" alt="Avionics Wiring" class="gallery-img">
+    <div class="gallery-item-overlay">
+      <span class="gallery-caption">Avionics wiring and integration</span>
+    </div>
+  </div>
+
+  <!-- Row 4 -->
+  <div class="gallery-item gi-sq" data-category="build" data-caption="Wing spar fabrication">
+    <img src="assets/images/gallery/8.jpg" alt="Wing Spar Fabrication" class="gallery-img">
+    <div class="gallery-item-overlay">
+      <span class="gallery-caption">Wing spar fabrication</span>
+    </div>
+  </div>
+
+  <div class="gallery-item gi-sq" data-category="competition"
+    data-caption="Technical inspection at competition">
+    <img src="assets/images/gallery/9.jpg" alt="Technical Inspection" class="gallery-img">
+    <div class="gallery-item-overlay">
+      <span class="gallery-caption">Technical inspection at competition</span>
+    </div>
+  </div>
+
+  <div class="gallery-item gi-wide" data-category="aircraft" data-caption="Aircraft — [YEAR-1] season">
+    <img src="assets/images/gallery/10.jpg" alt="Previous Season Aircraft" class="gallery-img">
+    <div class="gallery-item-overlay">
+      <span class="gallery-caption">Aircraft — [YEAR-1] season</span>
+    </div>
+  </div>
+
+  <!-- Row 5 -->
+  <div class="gallery-item gi-std" data-category="team" data-caption="Workshop session — [YEAR]">
+    <img src="assets/images/gallery/11.jpg" alt="Workshop Session" class="gallery-img">
+    <div class="gallery-item-overlay">
+      <span class="gallery-caption">Workshop session — [YEAR]</span>
+    </div>
+  </div>
+
+  <div class="gallery-item gi-std" data-category="testing" data-caption="Ground test run — payload loading">
+    <img src="assets/images/gallery/12.jpg" alt="Ground Test" class="gallery-img">
+    <div class="gallery-item-overlay">
+      <span class="gallery-caption">Ground test run — payload loading</span>
+    </div>
+  </div>
+
+  <div class="gallery-item gi-std" data-category="build" data-caption="3D printing fixtures and brackets">
+    <img src="assets/images/gallery/13.jpg" alt="3D Printing" class="gallery-img">
+    <div class="gallery-item-overlay">
+      <span class="gallery-caption">3D printing fixtures and brackets</span>
+    </div>
+  </div>
+
+  <!-- Row 6 -->
+  <div class="gallery-item span-2 gi-wide" data-category="team"
+    data-caption="Full team — competition site [YEAR]">
+    <img src="assets/images/gallery/14.jpg" alt="Competition Team" class="gallery-img">
+    <div class="gallery-item-overlay">
+      <span class="gallery-caption">Full team — competition site [YEAR]</span>
+    </div>
+  </div>
+
+  <div class="gallery-item gi-std" data-category="competition" data-caption="Aircraft on the flight line">
+    <img src="assets/images/gallery/15.jpg" alt="Aircraft on Flight Line" class="gallery-img">
+    <div class="gallery-item-overlay">
+      <span class="gallery-caption">Aircraft on the flight line</span>
+    </div>
+  </div>
+
+  <!-- Row 7 -->
+  <div class="gallery-item gi-std" data-category="aircraft"
+    data-caption="[YEAR-2] aircraft — three-quarter view">
+    <img src="assets/images/gallery/16.jpg" alt="Previous Season Aircraft" class="gallery-img">
+    <div class="gallery-item-overlay">
+      <span class="gallery-caption">[YEAR-2] aircraft</span>
+    </div>
+  </div>
+
+  <div class="gallery-item gi-std" data-category="build" data-caption="Early build — [YEAR-2] season">
+    <img src="assets/images/gallery/17.jpg" alt="Early Build" class="gallery-img">
+    <div class="gallery-item-overlay">
+      <span class="gallery-caption">Early build — [YEAR-2] season</span>
+    </div>
+  </div>
+
+  <div class="gallery-item gi-std" data-category="testing" data-caption="Taxi tests — [YEAR-2]">
+    <img src="assets/images/gallery/18.jpg" alt="Taxi Tests" class="gallery-img">
+    <div class="gallery-item-overlay">
+      <span class="gallery-caption">Taxi tests — [YEAR-2]</span>
+    </div>
+  </div>
+
+</div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img src="assets/images/logo-white.png" alt="Team Arcis" class="footer-logo"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+          <div class="footer-logo-fallback" style="display:none">ARCIS</div>
+          <div class="footer-tagline">Analyse · Assemble · Aviate</div>
+          <p class="footer-desc">A student engineering team competing in SAE Aero Design and AIAA Design/Build/Fly.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Team</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Current Team</a></li>
+            <li><a href="team.html#leadership">Leadership</a></li>
+            <li><a href="team.html#mentors">Mentors</a></li>
+            <li><a href="history.html">History</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Work</h4>
+          <ul>
+            <!-- <li><a href="competitions.html">Competitions</a></li> -->
+            <li><a href="competitions.html#projects">Projects</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="sponsors.html">Sponsors</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:teamarcis@dayanandasagar.edu" class="footer-contact-email">teamarcis@dayanandasagar.edu</a>
+          <p class="footer-contact-loc">Dayananda Sagar College of Engineering<br>Bangalore, Karnataka</p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/teamarcis/" class="social-link">Instagram</a>
+            <a href="https://www.linkedin.com/in/team-arcis-6b7b52355/" class="social-link">LinkedIn</a>
+            <a href="https://www.youtube.com/@teamarcis" class="social-link">YouTube</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> Team Arcis. All rights reserved.</p>
+        <p style="color:var(--t3); font-size:0.72rem; font-family:var(--fm); letter-spacing:0.06em;">SAE AERO DESIGN ·
+          AIAA DBF</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
+
 </html>

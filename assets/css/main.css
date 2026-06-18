@@ -5,32 +5,33 @@
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&display=swap');
 /* ── Variables ───────────────────────────────────────────── */
 :root {
-  --bg-0:   #090909;
-  --bg-1:   #0f0f0f;
+  --bg-0:   #0a0a0a;
+  --bg-1:   #161616;
   --bg-2:   #161616;
   --bg-3:   #1e1e1e;
   --bg-4:   #272727;
 
-  --b0: rgba(255,255,255,0.04);
+  --b0: #3c3c3c;
   --b1: rgba(255,255,255,0.07);
   --b2: rgba(255,255,255,0.12);
   --b3: rgba(255,255,255,0.20);
 
   --t0: #f0f0f0;
-  --t1: #a8a8a8;
-  --t2: #606060;
-  --t3: #353535;
+  --t1: #bab8b8;
+  --t2: #7b7979;
+  --t3: #6a6969;
 
-  --accent:    #c9a227;
+  --accent:    #e9bd2e;
   --accent-hi: #e0b93a;
   --accent-20: rgba(201,162,39,0.20);
   --accent-10: rgba(201,162,39,0.10);
   --accent-06: rgba(201,162,39,0.06);
 
-  --fh: 'Space Grotesk', sans-serif;
+  --fh: 'Barlow Condensed', sans-serif;
+  /* --fh-spacing: 110px; */
   --fb: 'Inter', sans-serif;
   --fm: 'JetBrains Mono', monospace;
 
@@ -69,14 +70,13 @@ input, textarea, select { font: inherit; }
 .fh { font-family: var(--fh); }
 .fm { font-family: var(--fm); }
 
-h1, h2, h3, h4 { font-family: var(--fh); font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; }
+h1, h2, h3, h4 { font-family: var(--fh); font-weight: 600; line-height: 1.15; }
 
 .display {
   font-family: var(--fh);
   font-size: clamp(2.8rem, 6vw, 4.8rem);
   font-weight: 700;
   line-height: 1.05;
-  letter-spacing: -0.03em;
 }
 .h1 { font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 700; }
 .h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 600; }
@@ -258,7 +258,6 @@ h1, h2, h3, h4 { font-family: var(--fh); font-weight: 600; line-height: 1.15; le
   font-weight: 600;
   color: var(--t1);
   padding: 8px 0;
-  letter-spacing: -0.02em;
   transition: color 0.2s;
   display: block;
 }
@@ -344,6 +343,19 @@ h1, h2, h3, h4 { font-family: var(--fh); font-weight: 600; line-height: 1.15; le
   border-color: var(--accent-20);
   color: var(--accent);
   background: var(--accent-06);
+}
+
+/* Links inside tags */
+.tag a {
+  color: var(--t2);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.tag a:hover {
+  color: var(--accent);
+}
+.tag a:focus {
+  outline: none;
 }
 
 /* ── Photo / Placeholder ─────────────────────────────────── */
@@ -452,7 +464,6 @@ hr.section-rule {
   color: var(--accent);
   line-height: 1;
   margin-bottom: 6px;
-  letter-spacing: -0.03em;
 }
 .stat-label {
   font-size: 0.78rem;
@@ -546,7 +557,6 @@ hr.section-rule {
   font-family: var(--fh);
   font-weight: 600;
   font-size: 0.95rem;
-  letter-spacing: -0.01em;
   margin-bottom: 4px;
 }
 .member-role {
@@ -616,7 +626,6 @@ hr.section-rule {
   font-family: var(--fh);
   font-size: 1.4rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
   margin-bottom: 6px;
 }
 .lead-dept {
@@ -631,29 +640,32 @@ hr.section-rule {
 }
 
 /* ── Mentor card ─────────────────────────────────────────── */
+.mentor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
 .mentor-card {
-  padding: 24px;
-  border: 1px solid var(--b1);
-  border-radius: var(--r2);
-  background: var(--bg-1);
   display: flex;
   gap: 20px;
   align-items: flex-start;
-}
-.mentor-avatar {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--bg-2);
+  padding: 28px;
+  background: var(--bg-0);
   border: 1px solid var(--b1);
+  border-radius: var(--r2);
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.mentor-avatar {
   flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--fh);
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--t2);
+}
+
+@media (max-width: 768px) {
+  .mentor-grid {
+    grid-template-columns: 1fr;
+  }
 }
 .mentor-role {
   font-family: var(--fm);
@@ -685,7 +697,20 @@ hr.section-rule {
   width: 1px;
   background: var(--b1);
 }
-
+a.tag-link {
+  text-decoration: none;
+  color: inherit;
+}
+a.tag-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.sponsor-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
 .tl-item {
   position: relative;
   margin-bottom: 60px;
@@ -719,7 +744,6 @@ hr.section-rule {
   font-family: var(--fh);
   font-size: 1.2rem;
   font-weight: 600;
-  letter-spacing: -0.01em;
   margin-bottom: 10px;
 }
 .tl-body { font-size: 0.9rem; color: var(--t1); margin-bottom: 16px; line-height: 1.7; }
@@ -738,14 +762,25 @@ hr.section-rule {
   justify-content: center;
   position: relative;
 }
+.more-link{
+    font-size:0.72rem;
+    color:var(--t3);
+    font-family:var(--fm);
+    text-decoration:none;
+    transition:color .2s ease;
+}
+
+.more-link:hover{
+    color:var(--accent);
+}
 .tl-photo::before {
   content: '';
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(var(--b0) 1px, transparent 1px),
-    linear-gradient(90deg, var(--b0) 1px, transparent 1px);
-  background-size: 24px 24px;
+    /* linear-gradient(var(--b0) 1px, transparent 1px),
+    linear-gradient(90deg, var(--b0) 1px, transparent 1px); */
+  /* background-size: 24px 24px; */
 }
 .tl-photo-label {
   font-family: var(--fm);
@@ -753,6 +788,47 @@ hr.section-rule {
   color: var(--t3);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+/* ── Sponsors (logo + name stacked) ───────────────────────── */
+.sponsor-logos {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.sponsor-logo {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.sponsor-logo img {
+  max-width: 160px;
+  height: auto;
+  display: block;
+  margin-bottom: 12px;
+}
+.sponsor-logo-ph {
+  font-family: var(--fh);
+  font-weight: 600;
+  color: var(--t0);
+}
+
+/* ── Competition headers: inline logo + title ───────────────── */
+.comp-row { display: flex; align-items: center; gap: 16px; }
+.competition-logo {
+  width: 90px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 6px;
+  background: transparent;
+}
+@media (max-width: 640px) {
+  .comp-row { flex-direction: column; align-items: flex-start; }
+  .competition-logo { width: 48px; margin-bottom: 8px; }
 }
 
 /* ── Gallery ─────────────────────────────────────────────── */
@@ -989,7 +1065,6 @@ hr.section-rule {
   font-size: clamp(2rem, 5.5vw, 4rem);
   font-weight: 700;
   line-height: 1.08;
-  letter-spacing: -0.03em;
   color: var(--t0);
   max-width: 800px;
   margin-bottom: 20px;
@@ -1068,7 +1143,6 @@ hr.section-rule {
   font-family: var(--fh);
   font-size: 1.1rem;
   font-weight: 600;
-  letter-spacing: -0.01em;
   margin-bottom: 10px;
 }
 .comp-card-body { font-size: 0.88rem; color: var(--t1); line-height: 1.7; }
@@ -1097,7 +1171,7 @@ hr.section-rule {
 }
 .process-title {
   font-family: var(--fh);
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   font-weight: 600;
   margin-bottom: 8px;
 }
