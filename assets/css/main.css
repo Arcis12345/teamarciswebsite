@@ -1045,7 +1045,7 @@ a.tag-link:hover {
 }
 
 .hero-logo {
-  width: clamp(200px, 30vw, 320px);
+  width: clamp(600px, 30vw, 320px);
   height: auto;
   margin-bottom: 40px;
   /* filter: brightness(1.05); */

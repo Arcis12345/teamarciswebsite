@@ -6,6 +6,29 @@
   <title>Team Arcis</title>
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="icon" href="assets/images/arcis black circle.png" type="image/png">
+  <style>
+    /* Collapse/toggle helpers for timeline by year */
+    .tl-item { display: none; }
+    .tl-item.show { display: block; }
+    .year-link {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--t2);
+    }
+    .year-link::after {
+      content: '▸';
+      transition: transform 0.2s ease;
+      color: inherit;
+    }
+    .year-link.active {
+      color: var(--accent) !important;
+    }
+    .year-link.active::after {
+      transform: rotate(90deg);
+    }
+  </style>
 </head>
 <body>
 
@@ -93,11 +116,21 @@
         <!-- Sticky year index -->
         <div style="position:sticky; top:calc(var(--nav-h) + 32px);" class="reveal">
           <div style="font-family:var(--fm); font-size:0.62rem; color:var(--t2); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:16px;">Jump to year</div>
-          <div style="display:flex; flex-direction:column; gap:4px;">
-            <a href="#2026" style="font-size:0.82rem; color:var(--accent); padding:4px 0; transition:color 0.2s;">2026 ↑ Latest</a>
-            <a href="#2025"      style="font-size:0.82rem; color:var(--t2); padding:4px 0; transition:color 0.2s;" onmouseover="this.style.color='var(--t0)'" onmouseout="this.style.color='var(--t2)'">2025</a>
-            <a href="#2024"      style="font-size:0.82rem; color:var(--t2); padding:4px 0; transition:color 0.2s;" onmouseover="this.style.color='var(--t0)'" onmouseout="this.style.color='var(--t2)'">2024</a>
-            <!-- <a href="#2024"      style="font-size:0.82rem; color:var(--t2); padding:4px 0; transition:color 0.2s;" onmouseover="this.style.color='var(--t0)'" onmouseout="this.style.color='var(--t2)'">2023</a> -->
+          <div style="display:flex; flex-direction:column; gap:4px; max-height:60vh; overflow:auto;">
+            <!-- years 2026 down to 2014; clicking toggles the year's entries -->
+            <a class="year-link" data-year="2026" href="#2026" style="font-size:0.82rem; color:var(--accent); padding:4px 0; transition:color 0.2s;">2026 Latest</a>
+            <a class="year-link" data-year="2025" href="#2025" style="font-size:0.82rem; color:var(--t2); padding:4px 0; transition:color 0.2s;">2025</a>
+            <a class="year-link" data-year="2024" href="#2024" style="font-size:0.82rem; color:var(--t2); padding:4px 0; transition:color 0.2s;">2024</a>
+            <a class="year-link" data-year="2023" href="#2023" style="font-size:0.82rem; color:var(--t2); padding:4px 0; transition:color 0.2s;">2023</a>
+            <a class="year-link" data-year="2022" href="#2022" style="font-size:0.82rem; color:var(--t2); padding:4px 0; transition:color 0.2s;">2022</a>
+            <a class="year-link" data-year="2021" href="#2021" style="font-size:0.82rem; color:var(--t2); padding:4px 0; transition:color 0.2s;">2021</a>
+            <a class="year-link" data-year="2020" href="#2020" style="font-size:0.82rem; color:var(--t2); padding:4px 0; transition:color 0.2s;">2020</a>
+            <a class="year-link" data-year="2019" href="#2019" style="font-size:0.82rem; color:var(--t2); padding:4px 0; transition:color 0.2s;">2019</a>
+            <a class="year-link" data-year="2018" href="#2018" style="font-size:0.82rem; color:var(--t2); padding:4px 0; transition:color 0.2s;">2018</a>
+            <a class="year-link" data-year="2017" href="#2017" style="font-size:0.82rem; color:var(--t2); padding:4px 0; transition:color 0.2s;">2017</a>
+            <a class="year-link" data-year="2016" href="#2016" style="font-size:0.82rem; color:var(--t2); padding:4px 0; transition:color 0.2s;">2016</a>
+            <a class="year-link" data-year="2015" href="#2015" style="font-size:0.82rem; color:var(--t2); padding:4px 0; transition:color 0.2s;">2015</a>
+            <a class="year-link" data-year="2014" href="#2014" style="font-size:0.82rem; color:var(--t2); padding:4px 0; transition:color 0.2s;">2014</a>
           </div>
           <div style="margin-top:24px; padding-top:16px; border-top:1px solid var(--b0);">
           </div>
@@ -124,7 +157,7 @@
              Vayu is a twin-motor high lift aircraft with a payload fraction of 0.61.
             </p>
 
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:16px;">
               <div>
                 <div style="font-family:var(--fm); font-size:0.62rem; color:var(--t2); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px;">Leadership</div>
                 <div style="font-size:0.85rem; color:var(--t1);"><a href="https://www.linkedin.com/in/geetapatil2825/" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline; text-underline-offset:3px;">Geeta Patil</a></div>
@@ -135,6 +168,11 @@
                 <div style="font-size:0.88rem; color:var(--t1);">Wingspan: 96 in</div>
                 <div style="font-size:0.88rem; color:var(--t1);">MTOW: 16.43 lb</div>
                 <div style="font-size:0.88rem; color:var(--t1);">Propulsion: 850 kv motor</div>
+              </div>
+              <div>
+                <div style="font-family:var(--fm); font-size:0.62rem; color:var(--t2); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px;">Competition</div>
+                <div style="font-size:0.85rem; color:var(--t1);">SAE Aero Design East</div>
+                <div style="font-size:0.85rem; color:var(--t1);">Regular Class</div>
               </div>
             </div>
 
@@ -168,7 +206,7 @@
               passengers and cargo.
             </p>
 
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:16px;">
               <div>
                 <div style="font-family:var(--fm); font-size:0.62rem; color:var(--t2); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px;">Leadership</div>
                 <div style="font-size:0.85rem; color:var(--t1);"><a href="https://www.linkedin.com/in/geetapatil2825/" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline; text-underline-offset:3px;">Geeta Patil</a></div>
@@ -179,6 +217,11 @@
                 <div style="font-size:0.88rem; color:var(--t1);">Wingspan: 59.45 in</div>
                 <div style="font-size:0.88rem; color:var(--t1);">MTOW: 11.03 lb</div>
                 <div style="font-size:0.88rem; color:var(--t1);">Propulsion: 300 kv motor</div>
+              </div>
+              <div>
+                <div style="font-family:var(--fm); font-size:0.62rem; color:var(--t2); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px;">Competition</div>
+                <div style="font-size:0.85rem; color:var(--t1);">AIAA DBF 2026 prototype</div>
+                <div style="font-size:0.85rem; color:var(--t1);">Completed</div>
               </div>
             </div>
 
@@ -241,6 +284,48 @@
 
             <div class="tl-photo">
               <img src="assets/images/history/athena.jpg" alt="Athena aircraft">
+            </div>
+          </div>
+
+          <div class="tl-item reveal" id="2025">
+            <div class="tl-year">2025</div>
+            <h2 class="tl-title">Aurora</h2>
+            <div class="tl-tags">
+              <span class="tag">Completed</span>
+              <span class="tag">Placeholder</span>
+              <span class="tag">Design review</span>
+            </div>
+            <p class="tl-body">
+              Aurora is a placeholder aircraft entry for 2025, using the 2024 section structure.
+              It replicates the same layout of two sections per year and preserves the year dropdown style.
+            </p>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:16px;">
+              <div>
+                <div style="font-family:var(--fm); font-size:0.62rem; color:var(--t2); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px;">Team lead</div>
+                <div style="font-size:0.85rem; color:var(--t1);">Placeholder Lead</div>
+              </div>
+              <div>
+                <div style="font-family:var(--fm); font-size:0.62rem; color:var(--t2); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px;">Competition</div>
+                <div style="font-size:0.85rem; color:var(--t1);">Placeholder Location</div>
+              </div>
+              <div>
+                <div style="font-family:var(--fm); font-size:0.62rem; color:var(--t2); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px;">Status</div>
+                <div style="font-size:0.85rem; color:var(--t1);">Prototype stage</div>
+              </div>
+            </div>
+
+            <div style="margin-bottom:16px;">
+              <div style="font-family:var(--fm); font-size:0.62rem; color:var(--t2); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px;">Notable alumni from this batch</div>
+              <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                <span class="tag">Alumnus A</span>
+                <span class="tag">Alumnus B</span>
+                <span class="tag">Alumnus C</span>
+              </div>
+            </div>
+
+            <div class="tl-photo">
+              <img src="assets/images/history/Avalon.JPG" alt="Aurora placeholder aircraft">
             </div>
           </div>
 
@@ -386,6 +471,111 @@ and medical transport payload.
 </footer>
 
 <script src="assets/js/main.js"></script>
+<script>
+  (function(){
+    // generate placeholder entries for years 2014-2023 (two per year)
+    const years = [2023,2022,2021,2020,2019,2018,2017,2016,2015,2014];
+    const timeline = document.querySelector('.timeline');
+    if(timeline){
+      years.forEach(y=>{
+        for(let i=1;i<=2;i++){
+          const item = document.createElement('div');
+          item.className = 'tl-item reveal';
+          item.dataset.year = y;
+          item.innerHTML = `
+            <div class="tl-year">${y}</div>
+            <h2 class="tl-title">Placeholder ${i===1 ? 'A' : 'B'}</h2>
+            <div class="tl-tags">
+              <span class="tag">Completed</span>
+              <span class="tag">Placeholder</span>
+              <span class="tag">${y} Design</span>
+            </div>
+            <p class="tl-body">This placeholder entry uses the 2024 section style for ${y}.</p>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:16px;">
+              <div>
+                <div style="font-family:var(--fm); font-size:0.62rem; color:var(--t2); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px;">Team lead</div>
+                <div style="font-size:0.85rem; color:var(--t1);">Placeholder Lead</div>
+              </div>
+              <div>
+                <div style="font-family:var(--fm); font-size:0.62rem; color:var(--t2); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px;">Competition</div>
+                <div style="font-size:0.85rem; color:var(--t1);">Placeholder Location</div>
+              </div>
+              <div>
+                <div style="font-family:var(--fm); font-size:0.62rem; color:var(--t2); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px;">Status</div>
+                <div style="font-size:0.85rem; color:var(--t1);">Design complete</div>
+              </div>
+            </div>
+            <div style="margin-bottom:16px;">
+              <div style="font-family:var(--fm); font-size:0.62rem; color:var(--t2); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px;">Notable alumni from this batch</div>
+              <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                <span class="tag">Alumnus 1</span>
+                <span class="tag">Alumnus 2</span>
+                <span class="tag">Alumnus 3</span>
+                <span class="tag">Alumnus 4</span>
+                <span class="tag">Alumnus 5</span>
+              </div>
+            </div>
+            <div class="tl-photo">
+              <img src="assets/images/history/Avalon.JPG" alt="Placeholder ${i===1 ? 'A' : 'B'} aircraft">
+            </div>
+          `;
+          timeline.appendChild(item);
+        }
+      });
+
+      // Toggle function
+      function setYearVisible(year, visible){
+        const ystr = String(year);
+        const items = Array.from(timeline.querySelectorAll('.tl-item'));
+        items.forEach(it=>{
+          const yrEl = it.querySelector('.tl-year');
+          const text = yrEl ? (yrEl.textContent || '') : '';
+          const idMatch = it.id && String(it.id).indexOf(ystr) !== -1;
+          const textMatch = text.indexOf(ystr) !== -1;
+          if(idMatch || textMatch){
+            if(visible) it.classList.add('show'); else it.classList.remove('show');
+          } else {
+            // if hiding, leave others hidden; when showing a specific year we will explicitly show only matching ones
+            if(!visible) it.classList.remove('show');
+          }
+        });
+      }
+
+      // Wire up year links
+      const links = document.querySelectorAll('.year-link');
+      links.forEach(l=>{
+        l.addEventListener('click', function(e){
+          e.preventDefault();
+          const y = this.dataset.year;
+          const isActive = this.classList.contains('active');
+          // collapse all year items
+          links.forEach(x=>x.classList.remove('active'));
+          if(isActive){
+            // already open -> close
+            setYearVisible(y, false);
+          } else {
+            // open selected year, close others
+            links.forEach(x=>{ const yy = x.dataset.year; setYearVisible(yy, false); });
+            setYearVisible(y, true);
+            this.classList.add('active');
+            // jump to first item for that year
+            const first = Array.from(timeline.querySelectorAll('.tl-item')).find(it=>{
+              const yrEl = it.querySelector('.tl-year');
+              const text = yrEl ? (yrEl.textContent||'') : '';
+              return (it.id && String(it.id).indexOf(y)!==-1) || text.indexOf(y)!==-1;
+            });
+            if(first) first.scrollIntoView({behavior:'smooth', block:'start'});
+          }
+        });
+      });
+
+      // show 2026 by default
+      setYearVisible(2026, true);
+      const defLink = document.querySelector('.year-link[data-year="2026"]');
+      if(defLink) defLink.classList.add('active');
+    }
+  })();
+</script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
