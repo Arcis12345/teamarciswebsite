@@ -8,11 +8,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&display=swap');
 /* ── Variables ───────────────────────────────────────────── */
 :root {
-  --bg-0:   #0a0a0a;
-  --bg-1:   #161616;
-  --bg-2:   #161616;
-  --bg-3:   #1e1e1e;
-  --bg-4:   #272727;
+--bg-0: #0a0a0a;
+--bg-1: #121212;
+--bg-2: #181818;
+--bg-3: #1f1f1f;
+--bg-4: #272727;
 
   --b0: #3c3c3c;
   --b1: rgba(255,255,255,0.07);
