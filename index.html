@@ -51,7 +51,16 @@
 <main>
 
   <!-- ── Hero ──────────────────────────────────────────── -->
+  <!-- Normal single-screen hero; the page scrolls naturally. The aircraft
+       canvas is a FIXED background layer (see CSS) that assembles with scroll
+       position and fades out as the hero leaves — a visual layer, not a pinned
+       stage. The fallback <img> (no-JS / reduced-motion / mobile) lives inside
+       the hero and just scrolls away with it. -->
   <section class="hero">
+
+    <img class="hero-aircraft-fallback" src="assets/anim/0060.webp" alt="" aria-hidden="true" decoding="async">
+    <canvas class="hero-aircraft" id="heroAircraft" aria-hidden="true"></canvas>
+
     <div class="hero-inner">
       <img
         src="assets/images/logo-white.png"
@@ -78,7 +87,7 @@
         <a href="history.html" class="btn btn-primary btn-lg">Explore Our Work</a>
         <a href="team.html"         class="btn btn-outline btn-lg">Meet the Team</a>
       </div>
-    </div>
+    </div><!-- /.hero-inner -->
   </section>
 
   <!-- ── What is Arcis ─────────────────────────────────── -->
@@ -170,7 +179,9 @@
   </section>
 
   <!-- ── Engineering snapshot ──────────────────────────── -->
-  <section class="section" style="background:var(--bg-1); border-top:1px solid var(--b1);">
+  <!-- id="process": the aircraft assembly finishes by the time this section
+       is reached (see assets/js/hero-aircraft.js). -->
+  <section class="section" id="process" style="background:var(--bg-1); border-top:1px solid var(--b1);">
     <div class="container">
       <div class="section-head reveal">
 
@@ -426,6 +437,7 @@
 </footer>
 
 <script src="assets/js/main.js"></script>
+<script src="assets/js/hero-aircraft.js"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
