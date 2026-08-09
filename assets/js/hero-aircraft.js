@@ -5,52 +5,71 @@
    The effect
    ----------
    The aircraft is a fixed background layer that stays in the viewport
-   while the page scrolls naturally over it — nothing is pinned. Its
-   assembly is driven by overall page-scroll position, deliberately slow:
-   it begins exploded at the top and finishes assembling by the time the
+   while the page scrolls naturally over it — nothing is pinned. It begins
+   exploded at the top of the page and finishes assembling by the time the
    "Engineering Process" section (#process, the 4th section) is reached.
-   After that it holds — fully assembled — for the rest of the page, so it
-   stays with the reader to the end instead of vanishing.
+   For the rest of the page the finished aircraft drifts very gently, so it
+   stays quietly alive with the reader instead of freezing or vanishing.
+   See sample() for the two scroll phases that produce this.
 
    It is kept deliberately faint and is feathered at the edges (CSS mask),
    so it reads as a supporting "blueprint" layer rather than competing with
    the content it now overlays. Frames gain a little opacity and settle to
    their resting scale as the airframe becomes one object.
 
+   Frames
+   ------
+   Built by tools/build-frames.py from the Blender PNG renders. That script
+   also keys the renders' black background to transparency — the canvas
+   overlays real content (including lighter sections and photos), so opaque
+   frames would paint a dark rectangle over them.
+
    Performance / smoothness
    ------------------------
-   • One <canvas>, 61 WebP frames (~2.4 MB), no libraries.
+   • One <canvas>, 90 WebP frames per device set (desktop ~6 MB / ~316 MB
+     decoded, mobile ~2 MB / ~79 MB decoded), no libraries.
+   • Cross-fade blending (see draw()/drawFrame()) between the two nearest
+     frames removes hard frame-to-frame "pops". Together with the 90-frame
+     density this is what fixes stop-motion-style stepping, which is most
+     visible when scrolling slowly through a long assembly.
    • Updates are driven by passive 'scroll' events coalesced into a single
-     requestAnimationFrame; we only redraw when the frame index changes and
-     only touch opacity when progress moves. Idle = zero work.
+     requestAnimationFrame; redraws are skipped when the fractional frame
+     position barely moves, and idle (no scrolling) costs nothing.
 
    Fallbacks (no scrub runs in any of these)
    -----------------------------------------
-   • No JS / reduced motion / mobile / low-memory / data-saver
+   • No JS / reduced motion / low-memory / data-saver
        → the static assembled still (<img>, inside the hero) is shown and
          simply scrolls away with the hero.
-   The full sequence decodes to ~200 MB of bitmaps, which risks crashing
-   memory-constrained mobile browsers, so we only run it on pointer-precise
-   desktop-class devices.
+   Desktop's set decodes to ~316 MB of bitmaps, which risks low-memory
+   desktop machines, so those fall back to the static still too (see the
+   deviceMemory guard below). Mobile's set is intentionally much lighter
+   (~79 MB) so it does not need that guard.
 
-   Tuning: CONFIG below (completeAtSelector, completeOffsetVh, opacity
-   floor/peak, fill, settle, vertical bias). Debug: append ?animdebug.
+   Tuning: CONFIG below (assemblyEndIndex, completeAtSelector,
+   completeOffsetVh, opacity floor/peak, fill, settle, vertical bias).
+   Debug: append ?animdebug to log frame position, opacity and geometry.
    ============================================================ */
 
 (function () {
   'use strict';
 
   var CONFIG = {
-    // Two frame sets, SAME animation. Desktop is the approved/locked set;
-    // mobile is a downscaled, decimated copy (~0.5 MB, ~33 MB decoded) so the
-    // effect is safe on phones. Only the frame source differs by device — all
-    // the timing / opacity / positioning / scroll-mapping below is shared.
-    // count = frames in the set; dir = its folder; opMin/opMax = the opacity
-    // ramp (exploded → assembled) for that device. Both sets use the full 61
-    // frames for smoothness; mobile's are downscaled (~54 MB decoded vs ~200).
-    desktop: { count: 61, dir: 'assets/anim/',        opMin: 0.12,  opMax: 0.24 },
-    mobile:  { count: 61, dir: 'assets/anim/mobile/', opMin: 0.125, opMax: 0.25 },
-    completeAtSelector: '#process', // assembly finishes when this section is reached…
+    // Two frame sets, SAME animation, rendered natively at each resolution
+    // (see tools/build-frames.py, which also keys the black background to
+    // transparency). count = frames; dir = folder; opMin/opMax = the opacity
+    // ramp (exploded → assembled) for that device. Only the frame source
+    // differs by device — timing / positioning / mapping below is shared.
+    desktop: { count: 90, dir: 'assets/anim/',        opMin: 0.12,  opMax: 0.24 },  // 1280x720, ~316 MB decoded
+    mobile:  { count: 90, dir: 'assets/anim/mobile/', opMin: 0.125, opMax: 0.25 },  // 640x360,  ~79 MB decoded
+
+    // The render is two movements in one sequence (measured from the source
+    // frames): the parts fly together over frames 0…assemblyEndIndex, then
+    // the finished aircraft drifts very gently for the remaining frames.
+    // We map those to two scroll phases — see sample() below.
+    assemblyEndIndex: 59,
+
+    completeAtSelector: '#process', // the assembly finishes when this section is reached…
     completeOffsetVh: 0.5,          // …specifically when its top is this far (in viewports) above the fold
     fill: 1.12,                     // >1 lets wings reach past the edges (mask feathers them)
     settle: 0.05,                   // extra scale while exploded; eases to 0 (assembled)
@@ -96,9 +115,9 @@
   var frames  = new Array(FRAME_COUNT);
   var loaded  = 0;
   var ready   = false;
-  var target  = 1;                  // scroll distance (px) over which assembly completes
-  var lastFrame = -1;
-  var lastP     = -1;
+  var assembleDist = 1;             // scroll px over which the assembly plays out
+  var maxScroll    = 1;             // total scrollable px of the page
+  var lastRaw = -1;                 // last drawn fractional frame position (for skip-redraw)
   var t0 = (performance && performance.now) ? performance.now() : Date.now();
 
   function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
@@ -111,26 +130,48 @@
     canvas.height = Math.max(1, Math.round(window.innerHeight * dpr));
   }
 
-  /* ── Where assembly should finish (recomputed on resize/load) ── */
-  function computeTarget() {
+  /* ── Scroll geometry (recomputed on resize/load) ───────── */
+  function computeMetrics() {
     var vh = window.innerHeight;
     var el = document.querySelector(CONFIG.completeAtSelector);
     if (el) {
       var docTop = el.getBoundingClientRect().top + window.pageYOffset;
-      target = Math.max(vh * 0.6, docTop - vh * CONFIG.completeOffsetVh);
+      assembleDist = Math.max(vh * 0.6, docTop - vh * CONFIG.completeOffsetVh);
     } else {
-      target = vh * 2.5;            // fallback if the anchor is missing
+      assembleDist = vh * 2.5;      // fallback if the anchor is missing
     }
+    var docH = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+    // Keep a sane drift span even on short pages / odd layouts.
+    maxScroll = Math.max(assembleDist + vh, docH - vh);
   }
 
-  function progress() { return clamp01(window.pageYOffset / target); }
+  /* ── Scroll position → { assembly progress, frame position } ──
+     Phase A (page top → #process): frames 0…assemblyEndIndex — the parts
+     flying together. This is the part the reader should perceive as "the
+     aircraft is being assembled", so it gets the whole run-up to the
+     Engineering Process section.
+     Phase B (#process → page bottom): the remaining frames — the finished
+     aircraft drifting gently. This keeps it quietly alive for the rest of
+     the page instead of freezing on a single static frame. ── */
+  function sample() {
+    var y   = window.pageYOffset;
+    var end = Math.max(0, Math.min(CONFIG.assemblyEndIndex, FRAME_COUNT - 1));
+    var p   = clamp01(y / assembleDist);          // assembly progress 0..1
+    var raw;
+    if (p < 1) {
+      raw = p * end;
+    } else {
+      var driftSpan = Math.max(1, maxScroll - assembleDist);
+      raw = end + clamp01((y - assembleDist) / driftSpan) * ((FRAME_COUNT - 1) - end);
+    }
+    return { p: p, raw: raw };
+  }
 
-  /* ── Draw one frame at assembly progress `p` (0..1) ────── */
-  function draw(index, p) {
+  /* ── Draw a single frame at alpha `a` (settle scale from progress `p`) ── */
+  function drawFrame(index, p, a) {
     var img = frames[index];
     if (!img || !img.complete || !img.naturalWidth) return;
     var cw = canvas.width, ch = canvas.height;
-    ctx.clearRect(0, 0, cw, ch);
     var settle = 1 + CONFIG.settle * (1 - easeOut(p));
     var scale  = Math.min(cw / img.naturalWidth, ch / img.naturalHeight)
                * CONFIG.fill * settle;
@@ -138,19 +179,49 @@
     var dh = img.naturalHeight * scale;
     var dx = (cw - dw) / 2;
     var dy = (ch - dh) / 2 + ch * CONFIG.yOffsetFactor;
+    ctx.globalAlpha = a;
     ctx.drawImage(img, dx, dy, dw, dh);
+    ctx.globalAlpha = 1;
+  }
+
+  /* ── Draw the current position, CROSS-FADED between its two nearest
+     frames. `raw` is a fractional frame index (e.g. 12.4 = 40% of the way
+     from frame 12 to 13). Blending removes the hard "pop" of snapping to
+     the nearest frame, which is what reads as blocky/stop-motion —
+     especially when scrolling slowly through a long assembly.
+
+     The two draws must ADD to a linear blend, t*B + (1-t)*A. Drawing A
+     opaque and then laying B over it with normal (source-over) compositing
+     does not do that: wherever B is transparent, A stays at full strength,
+     so a moving part shows as a double image instead of a fade. Instead we
+     draw A pre-faded onto the cleared canvas and add B with 'lighter'
+     (additive), which — because both contributions are premultiplied —
+     gives exactly the linear interpolation we want, for colour and alpha. ── */
+  function draw(raw, p) {
+    var f0 = Math.floor(raw);
+    var f1 = Math.min(FRAME_COUNT - 1, f0 + 1);
+    var t  = raw - f0;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (f1 === f0 || t <= 0.004) {          // sitting on a frame — no blend needed
+      drawFrame(f0, p, 1);
+      return;
+    }
+    drawFrame(f0, p, 1 - t);
+    ctx.globalCompositeOperation = 'lighter';
+    drawFrame(f1, p, t);
+    ctx.globalCompositeOperation = 'source-over';
   }
 
   function render() {
-    var p = progress();
-    if (Math.abs(p - lastP) < 0.0005 && lastFrame >= 0) return;
-    lastP = p;
-    var f  = Math.round(p * (FRAME_COUNT - 1));
-    var op = OP_MIN + (OP_MAX - OP_MIN) * easeOut(p);
-    if (f !== lastFrame) { lastFrame = f; draw(f, p); }
+    var s = sample();
+    if (Math.abs(s.raw - lastRaw) < 0.01 && lastRaw >= 0) return;
+    lastRaw = s.raw;
+    var op = OP_MIN + (OP_MAX - OP_MIN) * easeOut(s.p);
+    draw(s.raw, s.p);
     canvas.style.opacity = op.toFixed(3);
-    if (DEBUG) console.log('[hero-aircraft] p=' + p.toFixed(2) +
-      ' · frame ' + f + ' · op=' + op.toFixed(2) + ' · target=' + Math.round(target) + 'px');
+    if (DEBUG) console.log('[hero-aircraft] p=' + s.p.toFixed(2) +
+      ' · frame ' + s.raw.toFixed(2) + '/' + (FRAME_COUNT - 1) +
+      ' · op=' + op.toFixed(2) + ' · assembleDist=' + Math.round(assembleDist) + 'px');
   }
 
   /* ── Activate once frames are ready ────────────────────── */
@@ -158,8 +229,8 @@
     if (ready) return;
     ready = true;
     sizeCanvas();
-    computeTarget();
-    lastFrame = -1; lastP = -1;
+    computeMetrics();
+    lastRaw = -1;
     render();
     if (fallback) {                              // crossfade the static still out
       fallback.style.opacity = '0';
@@ -174,9 +245,11 @@
       requestAnimationFrame(function () { ticking = false; render(); });
     }, { passive: true });
 
-    // Layout can shift as images/fonts settle → recompute the finish point.
+    // Layout can shift as images/fonts settle → recompute the scroll geometry.
+    // lastRaw must be reset too, otherwise the skip-redraw check can swallow
+    // the redraw that the new geometry needs.
     window.addEventListener('load', function () {
-      computeTarget(); lastP = -1; render();
+      computeMetrics(); lastRaw = -1; render();
     });
 
     if (DEBUG) {
@@ -223,8 +296,8 @@
     requestAnimationFrame(function () {
       resizeQueued = false;
       sizeCanvas();
-      computeTarget();
-      lastFrame = -1; lastP = -1;                // force redraw at the new size
+      computeMetrics();
+      lastRaw = -1;                              // force redraw at the new size
       render();
     });
   }, { passive: true });
