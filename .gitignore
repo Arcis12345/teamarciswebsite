@@ -1,0 +1,10 @@
+# Source Blender render frames — NOT needed at runtime.
+# Only the optimized assets/anim/*.webp frames are served to the site.
+# Keep these folders locally (or in separate storage) as source-of-truth;
+# committing ~248 MB of PNGs would bloat this GitHub Pages repo.
+Website animation frame/
+lower resolution website frames/
+
+# Scratch / preview artifacts
+_preview_aircraft.jpg
+_webptest/
