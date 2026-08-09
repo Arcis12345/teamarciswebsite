@@ -32,9 +32,11 @@
      frames removes hard frame-to-frame "pops". Together with the 90-frame
      density this is what fixes stop-motion-style stepping, which is most
      visible when scrolling slowly through a long assembly.
-   • Updates are driven by passive 'scroll' events coalesced into a single
-     requestAnimationFrame; redraws are skipped when the fractional frame
-     position barely moves, and idle (no scrolling) costs nothing.
+   • Driven by a plain requestAnimationFrame loop (NOT a scroll listener
+     gated by a "ticking" flag — that pattern can deadlock and freeze the
+     animation permanently; see the long note in onReady). Redraws are
+     skipped when the fractional frame position has not moved, so an idle
+     page costs almost nothing, and the loop pauses on a hidden tab.
 
    Fallbacks (no scrub runs in any of these)
    -----------------------------------------
@@ -118,6 +120,7 @@
   var assembleDist = 1;             // scroll px over which the assembly plays out
   var maxScroll    = 1;             // total scrollable px of the page
   var lastRaw = -1;                 // last drawn fractional frame position (for skip-redraw)
+  var rafId   = 0;                  // handle for the drive loop (0 = not running)
   var t0 = (performance && performance.now) ? performance.now() : Date.now();
 
   function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
@@ -224,6 +227,18 @@
       ' · op=' + op.toFixed(2) + ' · assembleDist=' + Math.round(assembleDist) + 'px');
   }
 
+  /* ── The drive loop (see the note in onReady for why it is a loop) ── */
+  function loop() {
+    render();
+    rafId = requestAnimationFrame(loop);   // re-arm unconditionally
+  }
+  function startLoop() {
+    if (!rafId) rafId = requestAnimationFrame(loop);
+  }
+  function stopLoop() {
+    if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
+  }
+
   /* ── Activate once frames are ready ────────────────────── */
   function onReady() {
     if (ready) return;
@@ -237,13 +252,33 @@
       setTimeout(function () { fallback.style.display = 'none'; }, 650);
     }
 
-    // Update on scroll, coalesced into one rAF; idle when not scrolling.
-    var ticking = false;
-    window.addEventListener('scroll', function () {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(function () { ticking = false; render(); });
-    }, { passive: true });
+    // Drive the animation from a plain rAF loop.
+    //
+    // This deliberately does NOT use the usual "scroll listener + ticking
+    // flag" pattern:
+    //
+    //     if (ticking) return;
+    //     ticking = true;
+    //     requestAnimationFrame(function () { ticking = false; render(); });
+    //
+    // That pattern deadlocks. If the rAF callback which clears the flag is
+    // ever skipped — a background tab, or a throttled frame while the ~4 MB
+    // of frames are still downloading — `ticking` stays true and EVERY later
+    // scroll is ignored, freezing the aircraft on frame 0 for good. That is
+    // exactly what happened on the live site: slow network = a long window to
+    // hit it, while localhost (frames cached in ~130 ms) never did.
+    //
+    // A loop cannot get stuck: each frame re-arms itself unconditionally, and
+    // render() early-returns when the frame position has not moved, so an
+    // idle page costs almost nothing.
+    startLoop();
+    document.addEventListener('visibilitychange', function () {
+      stopLoop();                       // always clear the handle first…
+      if (!document.hidden) {
+        lastRaw = -1;                   // …then force one redraw on return
+        startLoop();
+      }
+    });
 
     // Layout can shift as images/fonts settle → recompute the scroll geometry.
     // lastRaw must be reset too, otherwise the skip-redraw check can swallow
